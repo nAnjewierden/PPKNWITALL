@@ -10,8 +10,8 @@ export default class BehReport extends Component{
         this.state = {
             clientName: 'select',
             date: '',
-            time: '',
-            duration: '',
+            time: 0,
+            duration: 0,
             behaviorExhibited: '',
             antecedent: '',
             descriptionOfIncident: '',
@@ -37,11 +37,13 @@ export default class BehReport extends Component{
             clientName: value
         })
     }
-    handleDate(value){
+    handleDate(){
+        let tempDate = new Date().toDateString()
+    console.log(tempDate)
         this.setState({
-            date: value
+            date: tempDate
         })
-        console.log(this.state)
+    
     }
     handleTime(value){
         this.setState({
@@ -94,6 +96,8 @@ export default class BehReport extends Component{
             actionTaken, 
             clientsInvolved, 
             staffInvolved } = this.state
+            this.handleDate()
+            console.log(this.state)
         axios.post('/api/reportB', {
             clientName, 
             date, 
@@ -104,8 +108,11 @@ export default class BehReport extends Component{
             descriptionOfIncident, 
             actionTaken, 
             clientsInvolved,
-            staffInvolved}).then(res => {alert('that worked playa')})
-            this.handleCancel()
+            staffInvolved}).then(res => {
+                alert('that worked playa'
+                
+            )})
+            //this.handleCancel()
     }
     handleCancel(){
         this.setState({
@@ -122,8 +129,8 @@ export default class BehReport extends Component{
         })
     }
     render(){
-    return (
-    
+        console.log(this.state)
+        return (
         <div className='mainDiv'>
         
         <h1 className='header'>Behavioral Incident Report</h1>
@@ -227,7 +234,7 @@ export default class BehReport extends Component{
             <textarea name="actionTakenB" rows="5" cols="30" onChange={ele => this.handleActionTaken(ele.target.value)} 
             value={this.state.actionTaken}/>
             </div>
-
+            <button onClick={() => this.handleDate()}>get date</button>
             </div>
             <div className="button-group"><button className='button input' 
             onClick={() => this.handleCancel()}>

@@ -34,12 +34,13 @@ class Chart extends Component {
     render() {
 
         let behIncidents = this.props.arrayOfBehavioralIncidents.map((ele) => {
-
+            let newDate = new Date(ele.incident_date)
+            console.log(newDate.toDateString())
             return (
                 <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
                     <div>Behavior: {ele.behavior_exhibited}</div>
-                    <div>Date: {ele.incident_date}</div>
+                    <div>Date: {newDate.toDateString()}</div>
                 </div>
             )
         })
