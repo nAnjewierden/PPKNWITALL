@@ -1,7 +1,8 @@
 .full-page{
     height: 100%;
     width: 100%;
-    background: gray
+    background: gray;
+    display: flex
 }
 
 .incident-column{

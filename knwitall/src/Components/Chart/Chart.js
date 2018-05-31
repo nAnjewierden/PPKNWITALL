@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './reset.css'
 import './Chart.css'
+import LineGraph from '../LineGraph/LineGraph'
 import { connect } from 'react-redux'
-import { getBehIncidents } from '../../quackquack/reducer'
+import { getBehIncidents, getBehIncidentsGraph } from '../../quackquack/reducer'
 import Modal from '../behIncidentModal/behIncidentModal'
 
 
@@ -29,6 +30,7 @@ class Chart extends Component {
     }
     componentDidMount() {
         this.props.dispatch(getBehIncidents())
+        this.props.dispatch(getBehIncidentsGraph('Client1'))
     }
 
     render() {
@@ -51,6 +53,7 @@ class Chart extends Component {
                 <button onClick={() => this.handleModalOff()}>Close</button>
                 </div>
                 <div className='incident-column'>{behIncidents}</div>
+                <div><LineGraph/></div>
             </div>
         )
     }

@@ -33,6 +33,16 @@ export const updateBehReport = function (clientName, date, time, duration, behav
     })
 }
 
+export const getBehIncidentsGraph = function (clientName){
+    console.log(clientName)
+    return axios.put('/api/getBehIncidentsGraph', {clientName})
+    .then(res => {
+        console.log(res)
+        return res.data 
+    })
+}
+
+
 
 // his.state.clientNameB,
 //         this.state.dateB,
