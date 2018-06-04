@@ -38,6 +38,7 @@ const UPDATE_ALL_B = 'UPDATE_ALL_B'
 const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_B_FULFILLED'
 const GET_BEH_INCIDENTS_GRAPH = 'GET_BEH_INCIDENTS_GRAPH'
 const GET_BEH_INCIDENTS_GRAPH_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_FULFILLED'
+const GET_BEH_INCIDENTS_GRAPH_PENDING = 'GET_BEH_INCIDENTS_GRAPH_PENDING'
 
 
 export default function reducer(state = initialState, action) {
@@ -101,29 +102,32 @@ export default function reducer(state = initialState, action) {
             console.log('fulfilled')
             return Object.assign({}, state, { arrayOfBehavioralIncidents: action.payload })
 
+        case GET_BEH_INCIDENTS_GRAPH_PENDING:
+
+            console.log('pending')
+            return Object.assign({}, state)
         case GET_BEH_INCIDENTS_GRAPH_FULFILLED:
 
             let returnArray = []
-            let firstDay = new Date();
-
-            let y = firstDay.getFullYear();
-            let m = firstDay.getMonth();
-            let d = firstDay.getDate();
-            for (var i = 0; i < 30; i++) {
-                var day = new Date(y, m - 1, d + i).toDateString();
+            let lastDay = new Date();
+            console.log(lastDay, 'this should be today')
+            let y = lastDay.getFullYear();
+            let m = lastDay.getMonth();
+            let d = lastDay.getDate();
+            for (var i = 0; i <= 30; i++) {
+                var day = new Date(y, m, d - 30 + i).toDateString();
                 
                 returnArray.push(day)
                 
             }
             console.log(returnArray)
-            console.log(action.payload[0])
+            console.log(action.payload)
             let arrayOfCounts = returnArray.map((ele) => {
                 var count = 0;
                 for (let i = 0; i < action.payload.length; i++) {
-                    let payload = new Date(action.payload[0].incident_date)
+                    let payload = new Date(action.payload[i].incident_date)
                     let eleDate = new Date(ele)
-                    console.log(payload, eleDate, i)
-                    console.log(payload.getTime() === eleDate.getTime())
+                    
                     if (eleDate.getTime() === payload.getTime()){
                         count++;
                         console.log(count)

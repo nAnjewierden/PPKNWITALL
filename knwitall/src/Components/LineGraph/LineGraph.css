@@ -1,0 +1,12 @@
+.lineGraph{
+    margin: 0 auto;
+    background: black;
+    
+}
+
+canvas{
+    width: 100%;
+    height: 100%; 
+ 
+   
+}
