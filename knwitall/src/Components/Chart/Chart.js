@@ -6,7 +6,9 @@ import LineGraph2 from '../LineGraph/LineGraph2'
 import { connect } from 'react-redux'
 import { getBehIncidents,
          getBehIncidentsGraph1, 
-         getBehIncidentsGraph2, 
+         getBehIncidentsGraph2,
+         getMedIncidentsGraph1, 
+         getMedIncidentsGraph2, 
          changeGraph1, 
          changeGraph2 } from '../../quackquack/reducer'
 import Modal from '../behIncidentModal/behIncidentModal'
@@ -70,7 +72,12 @@ class Chart extends Component {
                 <button onClick={() => this.props.dispatch(changeGraph1())}>Change</button>
                 <LineGraph1/>
                 Client: 
-            <select onChange={(ele) => this.props.dispatch(getBehIncidentsGraph1(ele.target.value))}>
+            <select onChange={`${this.props.medOrBeh1 ? 
+            
+            (ele) => this.props.dispatch(getBehIncidentsGraph1(ele.target.value))
+            :
+            (ele) => this.props.dispatch(getMedIncidentsGraph1(ele.target.value))
+            }`}>
                 
                 <option value="Client1">Client 1</option>
                 <option value="Client2">Client 2</option>
@@ -81,7 +88,12 @@ class Chart extends Component {
                 <button onClick={() => this.props.dispatch(changeGraph2())}>Change</button>
                 <LineGraph2/>
                 Client: 
-            <select onChange={(ele) => this.props.dispatch(getBehIncidentsGraph2(ele.target.value))}>
+                <select onChange={`${this.props.medOrBeh1 ? 
+            
+            (ele) => this.props.dispatch(getBehIncidentsGraph2(ele.target.value))
+            :
+            (ele) => this.props.dispatch(getMedIncidentsGraph2(ele.target.value))
+            }`}>
                 
                 <option value="Client1">Client 1</option>
                 <option value="Client2">Client 2</option>
@@ -97,7 +109,9 @@ class Chart extends Component {
 
 function mapStateToProps(state) {
     return ({
-        arrayOfBehavioralIncidents: state.arrayOfBehavioralIncidents
+        arrayOfBehavioralIncidents: state.arrayOfBehavioralIncidents,
+        medOrBeh1: state.medOrBeh1,
+        medOrBeh2: state.medOrBeh2
     })
 }
 
