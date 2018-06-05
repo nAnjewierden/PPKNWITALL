@@ -10,7 +10,6 @@ export default class MedReport extends Component{
         this.state = {
             clientName: 'select',
             date: '',
-            time: '',
             duration: '',
             incidentType: 'select',
             antecedent: '',
@@ -21,7 +20,6 @@ export default class MedReport extends Component{
         }
         this.handleClientName = this.handleClientName.bind(this)
         this.handleDate = this.handleDate.bind(this)
-        this.handleTime = this.handleTime.bind(this)
         this.handleDuration = this.handleDuration.bind(this)
         this.handleIncidentType = this.handleIncidentType.bind(this)
         this.handleAntecedent = this.handleAntecedent.bind(this)
@@ -37,14 +35,11 @@ export default class MedReport extends Component{
                 clientName: value
             })
         }
-        handleDate(value){
+        handleDate(){
+            let tempDate = new Date().toDateString()
+        console.log(tempDate)
             this.setState({
-                date: value
-            })
-        }
-        handleTime(value){
-            this.setState({
-                time: value
+                date: tempDate
             })
         }
         handleDuration(value){
@@ -85,7 +80,6 @@ export default class MedReport extends Component{
         handleSubmit(){
             const {clientName, 
                 date, 
-                time, 
                 duration, 
                 incidentType, 
                 antecedent, 
@@ -94,8 +88,7 @@ export default class MedReport extends Component{
                 clientsInvolved, 
                 staffInvolved} = this.state
             axios.post('/api/reportM', {clientName, 
-                date, 
-                time, 
+                date,  
                 duration, 
                 incidentType, 
                 antecedent, 
@@ -111,7 +104,6 @@ export default class MedReport extends Component{
             this.setState({
             clientName: 'select',
             date: '',
-            time: '',
             duration: '',
             incidentType: 'select',
             antecedent: '',
@@ -153,13 +145,6 @@ export default class MedReport extends Component{
             
             <div className='group'>
            
-            <div className='input'>
-            Time: 
-            
-            <input onChange={(ele) => this.handleTime(ele.target.value)} 
-            value={this.state.time}/>
-            
-            </div>
             
             <div className='input'>
 
@@ -226,6 +211,7 @@ export default class MedReport extends Component{
             </div>
 
             </div>
+            <button onClick={() => this.handleDate()}>get date</button>
             <div className='button-group'><button className='button input' 
             onClick={() => this.handleCancel()}>
             Cancel

@@ -4,7 +4,6 @@ import {deleteBehReport,
         makeEditable,
         changeClientNameB,
         changeDateB,
-        changeTimeB,
         changeDurationB,
         changeBehaviorExhibitedB,
         changeAntecedentB,
@@ -28,9 +27,6 @@ function Modal(props){
             </div>
             <div>
             Date Of Incident: <input onChange={(ele => props.changeDateB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].incident_date}`}/>
-            </div>
-            <div>
-            Time Of Incident: <input onChange={(ele => props.changeTimeB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].incident_time}`}/>
             </div>
             <div>
             Duration Of Incident: <input onChange={(ele => props.changeDurationB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].duration}`}/>
@@ -61,7 +57,6 @@ function Modal(props){
     return(<div  className='modal'>
         <div>Client Name: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].client_name : 'DELETED'}`}</div>
         <div>Date Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].incident_date : 'DELETED'}`}</div>
-        <div>Time Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].incident_time : 'DELETED'}`}</div>
         <div>Duration Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].duration : 'DELETED'}`}</div>
         <div>Behavior Exhibited: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].behavior_exhibited : 'DELETED'}`}</div>
         <div>Antecedent: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].antecedent : 'DELETED'}`}</div>
@@ -99,7 +94,6 @@ export default connect(mapStateToProps, {
     makeEditable,
     changeClientNameB,
     changeDateB,
-    changeTimeB,
     changeDurationB,
     changeBehaviorExhibitedB,
     changeAntecedentB,

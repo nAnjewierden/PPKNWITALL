@@ -4,13 +4,16 @@ import './Chart.css'
 import LineGraph1 from '../LineGraph/LineGraph1'
 import LineGraph2 from '../LineGraph/LineGraph2'
 import { connect } from 'react-redux'
-import { getBehIncidents,
+import { getMedIncidents,
+         getBehIncidents,
          getBehIncidentsGraph1, 
          getBehIncidentsGraph2,
          getMedIncidentsGraph1, 
          getMedIncidentsGraph2, 
          changeGraph1, 
-         changeGraph2 } from '../../quackquack/reducer'
+         changeGraph2,
+         medOrBehIncidentColumn
+        } from '../../quackquack/reducer'
 import Modal from '../behIncidentModal/behIncidentModal'
 
 
@@ -29,6 +32,10 @@ class Chart extends Component {
     this.props.dispatch(getBehIncidentsGraph1())
     console.log(this.props.dispatch(getBehIncidentsGraph2('Client2')))
     this.props.dispatch(getBehIncidentsGraph2())
+    console.log(this.props.dispatch(getMedIncidentsGraph1('Client1')))
+    this.props.dispatch(getMedIncidentsGraph1())
+    console.log(this.props.dispatch(getMedIncidentsGraph2('Client2')))
+    this.props.dispatch(getMedIncidentsGraph2())
     }
     handleModalOn(value){
         console.log(value)
@@ -45,39 +52,55 @@ class Chart extends Component {
     }
     componentDidMount() {
         this.props.dispatch(getBehIncidents())
-        
+        this.props.dispatch(getMedIncidents())
     }
 
     render() {
 
         let behIncidents = this.props.arrayOfBehavioralIncidents.map((ele) => {
-            let newDate = new Date(ele.incident_date)
-            console.log(newDate.toDateString())
+            let newDate1 = new Date(ele.incident_date)
+            console.log(newDate1.toDateString())
             return (
                 <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
                     <div>Behavior: {ele.behavior_exhibited}</div>
-                    <div>Date: {newDate.toDateString()}</div>
+                    <div>Date: {newDate1.toDateString()}</div>
                 </div>
             )
         })
+
+        let medIncidents = this.props.arrayOfMedicalIncidents.map((ele) => {
+            let newDate2 = new Date(ele.incident_date)
+            console.log(newDate2.toDateString())
+            return (
+                <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
+                    <div>Name: {ele.client_name}</div>
+                    <div>Incident Type: {ele.incident_type}</div>
+                    <div>Date: {newDate2.toDateString()}</div>
+                </div>
+            )
+        })
+
         console.log(this.state)
         return (
             <div className='full-page'>
                 <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><Modal modalID={this.state.modalID}/>
                 <button onClick={() => this.handleModalOff()}>Close</button>
                 </div>
-                <div className='incident-column'>{behIncidents}</div>
+                <div className='incident-column'>
+                <button onClick={ele => this.props.dispatch(medOrBehIncidentColumn())}>Change</button>
+                {this.props.medOrBehIncidentColumn ? behIncidents : medIncidents}
+                </div>
                 <div className='graphColumn'>
                 <button onClick={() => this.props.dispatch(changeGraph1())}>Change</button>
                 <LineGraph1/>
                 Client: 
-            <select onChange={`${this.props.medOrBeh1 ? 
+            <select onChange={this.props.medOrBeh1 ? 
             
             (ele) => this.props.dispatch(getBehIncidentsGraph1(ele.target.value))
             :
             (ele) => this.props.dispatch(getMedIncidentsGraph1(ele.target.value))
-            }`}>
+            }>
                 
                 <option value="Client1">Client 1</option>
                 <option value="Client2">Client 2</option>
@@ -88,12 +111,12 @@ class Chart extends Component {
                 <button onClick={() => this.props.dispatch(changeGraph2())}>Change</button>
                 <LineGraph2/>
                 Client: 
-                <select onChange={`${this.props.medOrBeh1 ? 
+                <select onChange={this.props.medOrBeh2 ? 
             
             (ele) => this.props.dispatch(getBehIncidentsGraph2(ele.target.value))
             :
             (ele) => this.props.dispatch(getMedIncidentsGraph2(ele.target.value))
-            }`}>
+            }>
                 
                 <option value="Client1">Client 1</option>
                 <option value="Client2">Client 2</option>
@@ -110,8 +133,10 @@ class Chart extends Component {
 function mapStateToProps(state) {
     return ({
         arrayOfBehavioralIncidents: state.arrayOfBehavioralIncidents,
+        arrayOfMedicalIncidents: state.arrayOfMedicalIncidents,
         medOrBeh1: state.medOrBeh1,
-        medOrBeh2: state.medOrBeh2
+        medOrBeh2: state.medOrBeh2,
+        medOrBehIncidentColumn: state.medOrBehIncidentColumn
     })
 }
 

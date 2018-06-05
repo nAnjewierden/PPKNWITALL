@@ -75,10 +75,10 @@ else {
 }}} 
 function mapStateToProps(state) {
     return ({
-        arrayOfBehCounts2: state.arrayOfBehCounts1,
-        arrayofBehDateStrings2: state.arrayofBehDateStrings1,
-        arrayOfMedCounts2: state.arrayOfMedCounts1,
-        arrayofMedDateStrings2: state.arrayofMedDateStrings1,
+        arrayOfBehCounts2: state.arrayOfBehCounts2,
+        arrayofBehDateStrings2: state.arrayofBehDateStrings2,
+        arrayOfMedCounts2: state.arrayOfMedCounts2,
+        arrayofMedDateStrings2: state.arrayofMedDateStrings2,
         medOrBeh2: state.medOrBeh2
     })
 }

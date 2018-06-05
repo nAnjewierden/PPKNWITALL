@@ -7,6 +7,13 @@ export const getBehIncidents = function(){
     })
 }
 
+export const getMedIncidents = function(){
+    return axios.get('/api/getMedIncidents').then(res => {
+        console.log(res.data)
+        return res.data
+    })
+}
+
 export const deleteBehReport = function(id){
 
     return axios.delete(`/api/deleteBehIncident/${id}`).then(res => {
@@ -15,12 +22,11 @@ export const deleteBehReport = function(id){
     })
 }
 
-export const updateBehReport = function (clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
+export const updateBehReport = function (clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
     console.log(arguments)
     return axios.put(`/api/updateBehIncident/${id}`,
     {clientName, 
-    date, 
-    time, 
+    date,  
     duration, 
     behaviorExhibited, 
     antecedent, 

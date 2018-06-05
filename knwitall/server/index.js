@@ -25,6 +25,16 @@ app.get('/api/getBehIncidents',
             }
         )
     })
+    app.get('/api/getMedIncidents',
+    (req, res, next) => {
+       
+        //const dbInstance = req.app.get('db')
+        req.app.get('db').get_med_reports().then(
+            med_reports => {
+                res.status(200).send(med_reports)
+            }
+        )
+    })
 
 app.put('/api/getBehIncidentsGraph',
     (req, res, next) => {
@@ -43,7 +53,7 @@ app.put('/api/getBehIncidentsGraph',
         console.log('hit it', req.body)
         const dbInstance = req.app.get('db')
         req.app.get('db').get_last_month_med([req.body.clientName]).then(
-            beh_reports => {
+            med_reports => {
                 console.log(med_reports)
                 res.status(200).send(med_reports)
             }
@@ -53,8 +63,8 @@ app.put('/api/getBehIncidentsGraph',
 app.post('/api/reportM',
     (req, res, next) => {
         const dbInstance = req.app.get('db')
-        const { clientName, date, time, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
-        dbInstance.new_med_report([clientName, date, time, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved])
+        const { clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
+        dbInstance.new_med_report([clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved])
             .then(() => res.status(200).send('that workedM'))
             .catch((err) => console.log(err))
     })
@@ -62,8 +72,8 @@ app.post('/api/reportM',
 app.post('/api/reportB',
     (req, res, next) => {
         const dbInstance = req.app.get('db')
-        const { clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
-        dbInstance.new_beh_report([clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved])
+        const { clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
+        dbInstance.new_beh_report([clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved])
             .then(() => res.status(200).send('that workedB'))
             .catch((err) => console.log(err))
     })
@@ -83,12 +93,23 @@ app.delete('/api/deleteBehIncident/:id',
 app.put('/api/updateBehIncident/:id',
     (req, res, next) => {
         const dbInstance = req.app.get('db')
-        const { clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
+        const { clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
         console.log(req.body)
-        console.log({ clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved })
-        dbInstance.update_beh_report([clientName, date, time, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, req.params.id])
+        console.log({ clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved })
+        dbInstance.update_beh_report([clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, req.params.id])
             .then((behReports) => {
                 res.status(200).send(behReports)
+            })
+    })
+    app.put('/api/updateMedIncident/:id',
+    (req, res, next) => {
+        const dbInstance = req.app.get('db')
+        const { clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
+        console.log(req.body)
+        console.log({ clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved })
+        dbInstance.update_med_report([clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, req.params.id])
+            .then((medReports) => {
+                res.status(200).send(medReports)
             })
     })
 const port = 4000

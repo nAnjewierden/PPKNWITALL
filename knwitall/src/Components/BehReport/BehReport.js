@@ -10,7 +10,6 @@ export default class BehReport extends Component{
         this.state = {
             clientName: 'select',
             date: '',
-            time: 0,
             duration: 0,
             behaviorExhibited: '',
             antecedent: '',
@@ -21,7 +20,6 @@ export default class BehReport extends Component{
         }
         this.handleClientName = this.handleClientName.bind(this)
         this.handleDate = this.handleDate.bind(this)
-        this.handleTime = this.handleTime.bind(this)
         this.handleDuration = this.handleDuration.bind(this)
         this.handleBehaviorExhibited = this.handleBehaviorExhibited.bind(this)
         this.handleAntecedent = this.handleAntecedent.bind(this)
@@ -44,11 +42,6 @@ export default class BehReport extends Component{
             date: tempDate
         })
     
-    }
-    handleTime(value){
-        this.setState({
-            time: value
-        })
     }
     handleDuration(value){
         this.setState({
@@ -86,9 +79,9 @@ export default class BehReport extends Component{
         })
     }
     handleSubmit(){
-        const {clientName, 
-            date, 
-            time, 
+        const {
+            clientName, 
+            date,  
             duration, 
             behaviorExhibited, 
             antecedent, 
@@ -100,8 +93,7 @@ export default class BehReport extends Component{
             console.log(this.state)
         axios.post('/api/reportB', {
             clientName, 
-            date, 
-            time, 
+            date,  
             duration, 
             behaviorExhibited, 
             antecedent, 
@@ -112,13 +104,12 @@ export default class BehReport extends Component{
                 alert('that worked playa'
                 
             )})
-            //this.handleCancel()
+            this.handleCancel()
     }
     handleCancel(){
         this.setState({
         clientName: 'select',
         date: '',
-        time: '',
         duration: '',
         behaviorExhibited: 'select',
         antecedent: '',
@@ -159,13 +150,7 @@ export default class BehReport extends Component{
             
             <div className='group'>
            
-            <div className='input'>
-            Time: 
-            
-            <input onChange={(ele) => this.handleTime(ele.target.value)} 
-            value={this.state.time}/>
-            
-            </div>
+           
             
             <div className='input'>
 
@@ -240,7 +225,7 @@ export default class BehReport extends Component{
             onClick={() => this.handleCancel()}>
             Cancel
             </button>
-            <button className='button input' onClick={() => this.handleSubmit()}>Submit</button></div>
+            <button className='button input' onClick={() => this.handleSubmit()} >Submit</button></div>
         </form>
     </div>)
 }

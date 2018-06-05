@@ -1,7 +1,6 @@
 INSERT INTO med_reports
 (   client_name,
     incident_date,
-    incident_time,
     duration,
     incident_type,
     antecedent,
@@ -10,5 +9,5 @@ INSERT INTO med_reports
     staff_involved,
     clients_involved)
 VALUES
-($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+($1, $2, $3, $4, $5, $6, $7, $8, $9)
 RETURNING *;

@@ -1,10 +1,10 @@
 import * as services from './services'
 let initialState = {
     arrayOfBehavioralIncidents: [],
+    arrayOfMedicalIncidents: [],
     editable: false,
     clientNameB: 'MUST HAVE VALUE',
     dateB: 0,
-    timeB: 0,
     durationB: 0,
     behaviorExhibitedB: 'MUST HAVE VALUE',
     antecedentB: 'MUST HAVE VALUE',
@@ -21,20 +21,23 @@ let initialState = {
     arrayOfMedCounts2: [],
     arrayofMedDateStrings2: [],
     medOrBeh1: true,
-    medOrBeh2: true
+    medOrBeh2: true,
+    medOrBehIncidentColumn: true,
 
 }
 
-const GET_BEH_INCEDENTS = 'GET_BEH_INCEDENTS'
-const GET_BEH_INCEDENTS_PENDING = 'GET_BEH_INCEDENTS_PENDING'
-const GET_BEH_INCEDENTS_FULFILLED = 'GET_BEH_INCEDENTS_FULFILLED'
+const GET_BEH_INCIDENTS = 'GET_BEH_INCIDENTS'
+const GET_BEH_INCIDENTS_PENDING = 'GET_BEH_INCIDENTS_PENDING'
+const GET_BEH_INCIDENTS_FULFILLED = 'GET_BEH_INCIDENTS_FULFILLED'
+const GET_MED_INCIDENTS = 'GET_MED_INCIDENTS'
+const GET_MED_INCIDENTS_PENDING = 'GET_MED_INCIDENTS_PENDING'
+const GET_MED_INCIDENTS_FULFILLED = 'GET_MED_INCIDENTS_FULFILLED'
 const DELETE_BEH_REPORT = 'DELETE_BEH_REPORT'
 const DELETE_BEH_REPORT_PENDING = 'DELETE_BEH_REPORT_PENDING'
 const DELETE_BEH_REPORT_FULFILLED = 'DELETE_BEH_REPORT_FULFILLED'
 const MAKE_EDITABLE = 'MAKE_EDITABLE'
 const UPDATE_CLIENT_NAME_B = 'UPDATE_CLIENT_NAME_B'
 const UPDATE_DATE_B = 'UPDATE_DATE_B'
-const UPDATE_TIME_B = 'UPDATE_TIME_B'
 const UPDATE_DURATION_B = 'UPDATE_DURATION_B'
 const UPDATE_BEHAVIOR_EXHIBITED_B = 'UPDATE_BEHAVIOR_EXHIBITED_B'
 const UPDATE_ANTECEDENT_B = 'UPDATE_ANTECEDENT_B'
@@ -58,6 +61,7 @@ const GET_MED_INCIDENTS_GRAPH_2_FULFILLED = 'GET_MED_INCIDENTS_GRAPH_2_FULFILLED
 const GET_MED_INCIDENTS_GRAPH_2_PENDING = 'GET_MED_INCIDENTS_GRAPH_2_PENDING'
 const CHANGE_GRAPH_1 = 'CHANGE_GRAPH_1'
 const CHANGE_GRAPH_2 = 'CHANGE_GRAPH_2'
+const MED_OR_BEH_INCIDENT_COLUMN = 'MED_OR_BEH_INCIDENT_COLUMN'
 
 
 export default function reducer(state = initialState, action) {
@@ -67,9 +71,6 @@ export default function reducer(state = initialState, action) {
         //     return
         case UPDATE_CLIENT_NAME_B:
             return Object.assign({}, state, { clientNameB: action.payload })
-
-        case UPDATE_TIME_B:
-            return Object.assign({}, state, { timeB: action.payload })
 
         case UPDATE_DATE_B:
             return Object.assign({}, state, { dateB: action.payload })
@@ -95,15 +96,16 @@ export default function reducer(state = initialState, action) {
         case UPDATE_CLIENTS_INVOLVED_B:
             return Object.assign({}, state, { clientsInvolvedB: action.payload })
 
-        case GET_BEH_INCEDENTS_FULFILLED:
+        case GET_BEH_INCIDENTS_FULFILLED:
             return Object.assign({}, state, { arrayOfBehavioralIncidents: action.payload })
+        case GET_MED_INCIDENTS_FULFILLED:
+            return Object.assign({}, state, { arrayOfMedicalIncidents: action.payload })
 
         case UPDATE_ALL_B_FULFILLED:
             return Object.assign({}, state, {
                 arrayOfBehavioralIncidents: action.payload,
                 clientNameB: 'MUST HAVE VALUE',
                 dateB: 0,
-                timeB: 0,
                 durationB: 0,
                 behaviorExhibitedB: 'MUST HAVE VALUE',
                 antecedentB: 'MUST HAVE VALUE',
@@ -122,6 +124,9 @@ export default function reducer(state = initialState, action) {
 
         case CHANGE_GRAPH_2:
             return Object.assign({}, state, { medOrBeh2: !state.medOrBeh2 })
+
+        case MED_OR_BEH_INCIDENT_COLUMN:
+            return Object.assign({}, state, {medOrBehIncidentColumn: !state.medOrBehIncidentColumn})
 
         case DELETE_BEH_REPORT_FULFILLED:
             console.log('fulfilled')
@@ -291,8 +296,14 @@ export default function reducer(state = initialState, action) {
 
 export function getBehIncidents() {
     return {
-        type: GET_BEH_INCEDENTS,
+        type: GET_BEH_INCIDENTS,
         payload: services.getBehIncidents()
+    }
+}
+export function getMedIncidents() {
+    return {
+        type: GET_MED_INCIDENTS,
+        payload: services.getMedIncidents()
     }
 }
 export function deleteBehReport(id) {
@@ -301,13 +312,12 @@ export function deleteBehReport(id) {
         payload: services.deleteBehReport(id)
     }
 }
-export function updateAllB(clientNameB, dateB, timeB, durationB, behaviorExhibitedB, antecedentB, descriptionOfIncidentB, actionTakenB, staffInvolvedB, clientsInvolvedB, id) {
+export function updateAllB(clientNameB, dateB, durationB, behaviorExhibitedB, antecedentB, descriptionOfIncidentB, actionTakenB, staffInvolvedB, clientsInvolvedB, id) {
     return {
         type: UPDATE_ALL_B,
         payload: services.updateBehReport(
             clientNameB,
             dateB,
-            timeB,
             durationB,
             behaviorExhibitedB,
             antecedentB,
@@ -333,12 +343,6 @@ export function changeClientNameB(value) {
 export function changeDateB(value) {
     return {
         type: UPDATE_DATE_B,
-        payload: value
-    }
-}
-export function changeTimeB(value) {
-    return {
-        type: UPDATE_TIME_B,
         payload: value
     }
 }
@@ -421,6 +425,12 @@ export function changeGraph1() {
 export function changeGraph2() {
     return {
         type: CHANGE_GRAPH_2,
+        payload: ''
+    }
+}
+export function medOrBehIncidentColumn(){
+    return{
+        type: MED_OR_BEH_INCIDENT_COLUMN,
         payload: ''
     }
 }
