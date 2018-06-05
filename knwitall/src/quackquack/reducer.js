@@ -12,8 +12,12 @@ let initialState = {
     actionTakenB: 'MUST HAVE VALUE',
     staffInvolvedB: 'MUST HAVE VALUE',
     clientsInvolvedB: 'MUST HAVE VALUE',
-    arrayOfBehCounts: [],
-    arrayofBehDateStrings: []
+    arrayOfBehCounts1: [],
+    arrayofBehDateStrings1: [],
+    arrayOfBehCounts2: [],
+    arrayofBehDateStrings2: [],
+    medOrBeh1: true,
+    medOrBeh2: true
 
 }
 
@@ -36,9 +40,14 @@ const UPDATE_STAFF_INVOLVED_B = 'UPDATE_STAFF_INVOLVED_B'
 const UPDATE_CLIENTS_INVOLVED_B = 'UPDATE_CLIENTS_INVOLVED_B'
 const UPDATE_ALL_B = 'UPDATE_ALL_B'
 const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_B_FULFILLED'
-const GET_BEH_INCIDENTS_GRAPH = 'GET_BEH_INCIDENTS_GRAPH'
-const GET_BEH_INCIDENTS_GRAPH_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_FULFILLED'
-const GET_BEH_INCIDENTS_GRAPH_PENDING = 'GET_BEH_INCIDENTS_GRAPH_PENDING'
+const GET_BEH_INCIDENTS_GRAPH_1 = 'GET_BEH_INCIDENTS_GRAPH_1'
+const GET_BEH_INCIDENTS_GRAPH_1_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_1_FULFILLED'
+const GET_BEH_INCIDENTS_GRAPH_1_PENDING = 'GET_BEH_INCIDENTS_GRAPH_1_PENDING'
+const GET_BEH_INCIDENTS_GRAPH_2 = 'GET_BEH_INCIDENTS_GRAPH_2'
+const GET_BEH_INCIDENTS_GRAPH_2_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_2_FULFILLED'
+const GET_BEH_INCIDENTS_GRAPH_2_PENDING = 'GET_BEH_INCIDENTS_GRAPH_2_PENDING'
+const CHANGE_GRAPH_1 = 'CHANGE_GRAPH_1'
+const CHANGE_GRAPH_2 = 'CHANGE_GRAPH_2'
 
 
 export default function reducer(state = initialState, action) {
@@ -98,48 +107,93 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { editable: !state.editable }
             )
 
+        case CHANGE_GRAPH_1:
+        return Object.assign({}, state, {medOrBeh1: !state.medOrBeh1})
+
+        case CHANGE_GRAPH_2:
+        return Object.assign({}, state, {medOrBeh2: !state.medOrBeh2})
+        
         case DELETE_BEH_REPORT_FULFILLED:
             console.log('fulfilled')
             return Object.assign({}, state, { arrayOfBehavioralIncidents: action.payload })
 
-        case GET_BEH_INCIDENTS_GRAPH_PENDING:
+        case GET_BEH_INCIDENTS_GRAPH_1_PENDING:
 
             console.log('pending')
             return Object.assign({}, state)
-        case GET_BEH_INCIDENTS_GRAPH_FULFILLED:
+        case GET_BEH_INCIDENTS_GRAPH_1_FULFILLED:
 
-            let returnArray = []
-            let lastDay = new Date();
-            console.log(lastDay, 'this should be today')
-            let y = lastDay.getFullYear();
-            let m = lastDay.getMonth();
-            let d = lastDay.getDate();
+            let returnArray1 = []
+            let lastDay1 = new Date();
+            console.log(lastDay1, 'this should be today')
+            let y1 = lastDay1.getFullYear();
+            let m1 = lastDay1.getMonth();
+            let d1 = lastDay1.getDate();
             for (var i = 0; i <= 30; i++) {
-                var day = new Date(y, m, d - 30 + i).toDateString();
+                var day1 = new Date(y1, m1, d1 - 30 + i).toDateString();
                 
-                returnArray.push(day)
+                returnArray1.push(day1)
                 
             }
-            console.log(returnArray)
+            console.log(returnArray1)
             console.log(action.payload)
-            let arrayOfCounts = returnArray.map((ele) => {
-                var count = 0;
+            let arrayOfCounts1 = returnArray1.map((ele) => {
+                var count1 = 0;
                 for (let i = 0; i < action.payload.length; i++) {
-                    let payload = new Date(action.payload[i].incident_date)
-                    let eleDate = new Date(ele)
+                    let payload1 = new Date(action.payload[i].incident_date)
+                    let eleDate1 = new Date(ele)
                     
-                    if (eleDate.getTime() === payload.getTime()){
-                        count++;
-                        console.log(count)
+                    if (eleDate1.getTime() === payload1.getTime()){
+                        count1++;
+                        console.log(count1)
                     }
                 }
-                return count
+                return count1
                 
             })
-            console.log(arrayOfCounts)
+            console.log(arrayOfCounts1)
             return Object.assign({}, state, {
-                arrayOfBehCounts: arrayOfCounts,
-                arrayofBehDateStrings: returnArray })
+                arrayOfBehCounts1: arrayOfCounts1,
+                arrayofBehDateStrings1: returnArray1 })
+
+                case GET_BEH_INCIDENTS_GRAPH_2_PENDING:
+
+                console.log('pending')
+                return Object.assign({}, state)
+            case GET_BEH_INCIDENTS_GRAPH_2_FULFILLED:
+    
+                let returnArray2 = []
+                let lastDay2 = new Date();
+                console.log(lastDay2, 'this should be today')
+                let y2 = lastDay2.getFullYear();
+                let m2 = lastDay2.getMonth();
+                let d2 = lastDay2.getDate();
+                for (var i = 0; i <= 30; i++) {
+                    var day2 = new Date(y2, m2, d2 - 30 + i).toDateString();
+                    
+                    returnArray2.push(day2)
+                    
+                }
+                console.log(returnArray2)
+                console.log(action.payload)
+                let arrayOfCounts2 = returnArray2.map((ele) => {
+                    var count2 = 0;
+                    for (let i = 0; i < action.payload.length; i++) {
+                        let payload2 = new Date(action.payload[i].incident_date)
+                        let eleDate2 = new Date(ele)
+                        
+                        if (eleDate2.getTime() === payload2.getTime()){
+                            count2++;
+                            console.log(count2)
+                        }
+                    }
+                    return count2
+                    
+                })
+                console.log(arrayOfCounts2)
+                return Object.assign({}, state, {
+                    arrayOfBehCounts2: arrayOfCounts2,
+                    arrayofBehDateStrings2: returnArray2 })
         default: return state
     }
 }
@@ -239,10 +293,29 @@ export function changeClientsInvolvedB(value) {
         payload: value
     }
 }
-export function getBehIncidentsGraph(value) {
+export function getBehIncidentsGraph1(value) {
     console.log(value)
     return {
-        type: GET_BEH_INCIDENTS_GRAPH,
+        type: GET_BEH_INCIDENTS_GRAPH_1,
         payload: services.getBehIncidentsGraph(value)
     }
+}
+export function getBehIncidentsGraph2(value) {
+    console.log(value)
+    return {
+        type: GET_BEH_INCIDENTS_GRAPH_2,
+        payload: services.getBehIncidentsGraph(value)
+    }
+}
+export function changeGraph1(){
+    return {
+        type: CHANGE_GRAPH_1,
+        payload: ''
+    }
+}
+export function changeGraph2(){
+   return { 
+       type: CHANGE_GRAPH_2,
+       payload: ''
+   }
 }

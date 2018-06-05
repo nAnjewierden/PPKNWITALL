@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import './reset.css'
 import './Chart.css'
-import LineGraph from '../LineGraph/LineGraph'
+import LineGraph1 from '../LineGraph/LineGraph1'
+import LineGraph2 from '../LineGraph/LineGraph2'
 import { connect } from 'react-redux'
-import { getBehIncidents } from '../../quackquack/reducer'
+import { getBehIncidents,
+         getBehIncidentsGraph1, 
+         getBehIncidentsGraph2, 
+         changeGraph1, 
+         changeGraph2 } from '../../quackquack/reducer'
 import Modal from '../behIncidentModal/behIncidentModal'
 
 
@@ -14,6 +19,14 @@ class Chart extends Component {
             modalOn: false,
             modalID: 0
         }
+    }
+    componentWillMount()
+    {
+
+    console.log(this.props.dispatch(getBehIncidentsGraph1('Client1')))
+    this.props.dispatch(getBehIncidentsGraph1())
+    console.log(this.props.dispatch(getBehIncidentsGraph2('Client2')))
+    this.props.dispatch(getBehIncidentsGraph2())
     }
     handleModalOn(value){
         console.log(value)
@@ -53,7 +66,30 @@ class Chart extends Component {
                 <button onClick={() => this.handleModalOff()}>Close</button>
                 </div>
                 <div className='incident-column'>{behIncidents}</div>
-                <div className='graphColumn'><LineGraph/></div>
+                <div className='graphColumn'>
+                <button onClick={() => this.props.dispatch(changeGraph1())}>Change</button>
+                <LineGraph1/>
+                Client: 
+            <select onChange={(ele) => this.props.dispatch(getBehIncidentsGraph1(ele.target.value))}>
+                
+                <option value="Client1">Client 1</option>
+                <option value="Client2">Client 2</option>
+                <option value="Client3">Client 3</option>
+                <option value="Client4">Client 4</option>
+                <option value="Client5">Client 5</option>
+                </select>
+                <button onClick={() => this.props.dispatch(changeGraph2())}>Change</button>
+                <LineGraph2/>
+                Client: 
+            <select onChange={(ele) => this.props.dispatch(getBehIncidentsGraph2(ele.target.value))}>
+                
+                <option value="Client1">Client 1</option>
+                <option value="Client2">Client 2</option>
+                <option value="Client3">Client 3</option>
+                <option value="Client4">Client 4</option>
+                <option value="Client5">Client 5</option>
+                </select>
+                </div>
             </div>
         )
     }

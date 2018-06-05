@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Line, Bar} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import { getBehIncidentsGraph } from '../../quackquack/reducer'
+import { getBehIncidentsGraph1, getBehIncidentsGraph2 } from '../../quackquack/reducer'
 import './reset.css'
 import './LineGraph.css'
 
@@ -11,27 +11,22 @@ class LineGraph extends Component{
     constructor(){
         super()
     }
-    componentWillMount()
-    {
-
-    console.log(this.props.dispatch(getBehIncidentsGraph('Client1')))
-    this.props.dispatch(getBehIncidentsGraph('Client1'))
-    }
         render(){
     console.log(this.props)
-    console.log(this.props.arrayofBehDateStrings)
-    console.log(this.props.arrayOfBehCounts)
+    console.log(this.props.arrayofBehDateStrings2)
+    console.log(this.props.arrayOfBehCounts2)
     return(
     <div className='lineGraph'>
+   
         <Line  className='graph' data={{
             //array of strings, one for each day of last month
-            labels: this.props.arrayofBehDateStrings,
+            labels: this.props.arrayofBehDateStrings2,
             datasets: [
                 {
                     label: 'Number of Incidents',
                     //array of integers, one for each day of the last month, each representing the number of beh incidents that day
                     
-                    data: this.props.arrayOfBehCounts,
+                    data: this.props.arrayOfBehCounts2,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)'
                     ],
@@ -49,8 +44,8 @@ class LineGraph extends Component{
 }} 
 function mapStateToProps(state) {
     return ({
-        arrayOfBehCounts: state.arrayOfBehCounts,
-        arrayofBehDateStrings: state.arrayofBehDateStrings
+        arrayOfBehCounts2: state.arrayOfBehCounts2,
+        arrayofBehDateStrings2: state.arrayofBehDateStrings2
     })
 }
 export default connect(mapStateToProps)(LineGraph)
