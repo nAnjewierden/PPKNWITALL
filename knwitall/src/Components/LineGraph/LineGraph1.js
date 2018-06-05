@@ -7,7 +7,7 @@ import './LineGraph.css'
 
 
 
-class LineGraph extends Component{
+class LineGraph1 extends Component{
     constructor(){
         super()
     }
@@ -51,13 +51,13 @@ else {
        
             <Line  className='graph' data={{
                 //array of strings, one for each day of last month
-                labels: this.props.arrayofBehDateStrings1,
+                labels: this.props.arrayofMedDateStrings1,
                 datasets: [
                     {
                         label: 'Number of Incidents',
                         //array of integers, one for each day of the last month, each representing the number of beh incidents that day
                         
-                        data: this.props.arrayOfBehCounts1,
+                        data: this.props.arrayOfMedCounts1,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                         ],
@@ -77,10 +77,12 @@ function mapStateToProps(state) {
     return ({
         arrayOfBehCounts1: state.arrayOfBehCounts1,
         arrayofBehDateStrings1: state.arrayofBehDateStrings1,
+        arrayOfMedCounts1: state.arrayOfMedCounts1,
+        arrayofMedDateStrings1: state.arrayofMedDateStrings1,
         medOrBeh1: state.medOrBeh1
     })
 }
-export default connect(mapStateToProps)(LineGraph)
+export default connect(mapStateToProps)(LineGraph1)
 
 // var data = {
 // 	labels: ["January", "February", "March", "April", "May", "June", "July"],

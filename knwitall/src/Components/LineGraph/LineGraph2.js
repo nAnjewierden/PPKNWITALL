@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import {Line, Bar} from 'react-chartjs-2'
 import {connect} from 'react-redux'
-import { getBehIncidentsGraph1, getBehIncidentsGraph2 } from '../../quackquack/reducer'
+import { changeGraph2 } from '../../quackquack/reducer'
 import './reset.css'
 import './LineGraph.css'
 
 
 
-class LineGraph extends Component{
+class LineGraph2 extends Component{
     constructor(){
         super()
     }
@@ -15,6 +15,9 @@ class LineGraph extends Component{
     console.log(this.props)
     console.log(this.props.arrayofBehDateStrings2)
     console.log(this.props.arrayOfBehCounts2)
+    
+    if (this.props.medOrBeh2){
+    
     return(
     <div className='lineGraph'>
    
@@ -41,14 +44,45 @@ class LineGraph extends Component{
             
             }/>
     </div>)
-}} 
+}
+else {
+    return(
+        <div className='lineGraph'>
+       
+            <Line  className='graph' data={{
+                //array of strings, one for each day of last month
+                labels: this.props.arrayofMedDateStrings2,
+                datasets: [
+                    {
+                        label: 'Number of Incidents',
+                        //array of integers, one for each day of the last month, each representing the number of beh incidents that day
+                        
+                        data: this.props.arrayOfMedCounts2,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)'
+                        ],
+                        borderColor: [
+                            ' rgb(67, 13, 138)'
+                        ],
+                        borderWidth: 1
+                    }]
+                        
+                    }
+                
+                
+                }/>
+        </div>)
+}}} 
 function mapStateToProps(state) {
     return ({
-        arrayOfBehCounts2: state.arrayOfBehCounts2,
-        arrayofBehDateStrings2: state.arrayofBehDateStrings2
+        arrayOfBehCounts2: state.arrayOfBehCounts1,
+        arrayofBehDateStrings2: state.arrayofBehDateStrings1,
+        arrayOfMedCounts2: state.arrayOfMedCounts1,
+        arrayofMedDateStrings2: state.arrayofMedDateStrings1,
+        medOrBeh2: state.medOrBeh2
     })
 }
-export default connect(mapStateToProps)(LineGraph)
+export default connect(mapStateToProps)(LineGraph2)
 
 // var data = {
 // 	labels: ["January", "February", "March", "April", "May", "June", "July"],

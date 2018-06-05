@@ -30,10 +30,22 @@ app.put('/api/getBehIncidentsGraph',
     (req, res, next) => {
         console.log('hit it', req.body)
         const dbInstance = req.app.get('db')
-        req.app.get('db').get_last_month([req.body.clientName]).then(
+        req.app.get('db').get_last_month_beh([req.body.clientName]).then(
             beh_reports => {
-                console.log(beh_reports)
+                
                 res.status(200).send(beh_reports)
+            }
+        )
+    })
+
+    app.put('/api/getMedIncidentsGraph',
+    (req, res, next) => {
+        console.log('hit it', req.body)
+        const dbInstance = req.app.get('db')
+        req.app.get('db').get_last_month_med([req.body.clientName]).then(
+            beh_reports => {
+                console.log(med_reports)
+                res.status(200).send(med_reports)
             }
         )
     })

@@ -42,6 +42,14 @@ export const getBehIncidentsGraph = function (clientName){
     })
 }
 
+export const getMedIncidentsGraph = function (clientName){
+    console.log(clientName)
+    return axios.put('/api/getMedIncidentsGraph', {clientName})
+    .then(res => {
+        console.log(res)
+        return res.data 
+    })
+}
 
 
 // his.state.clientNameB,
