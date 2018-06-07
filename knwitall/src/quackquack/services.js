@@ -40,10 +40,10 @@ export const updateBehReport = function (clientName, date, duration, behaviorExh
 }
 
 export const getBehIncidentsGraph = function (clientName){
-    console.log(clientName)
+    
     return axios.put('/api/getBehIncidentsGraph', {clientName})
     .then(res => {
-        console.log(res)
+        
         return res.data 
     })
 }

@@ -8,4 +8,4 @@ import {Provider} from 'react-redux'
 import store from './quackquack/store'
 
 ReactDOM.render(<Provider store={store}><HashRouter><App /></HashRouter></Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();

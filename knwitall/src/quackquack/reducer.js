@@ -49,16 +49,16 @@ const UPDATE_ALL_B = 'UPDATE_ALL_B'
 const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_B_FULFILLED'
 const GET_BEH_INCIDENTS_GRAPH_1 = 'GET_BEH_INCIDENTS_GRAPH_1'
 const GET_BEH_INCIDENTS_GRAPH_1_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_1_FULFILLED'
-const GET_BEH_INCIDENTS_GRAPH_1_PENDING = 'GET_BEH_INCIDENTS_GRAPH_1_PENDING'
+
 const GET_BEH_INCIDENTS_GRAPH_2 = 'GET_BEH_INCIDENTS_GRAPH_2'
 const GET_BEH_INCIDENTS_GRAPH_2_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_2_FULFILLED'
-const GET_BEH_INCIDENTS_GRAPH_2_PENDING = 'GET_BEH_INCIDENTS_GRAPH_2_PENDING'
+
 const GET_MED_INCIDENTS_GRAPH_1 = 'GET_MED_INCIDENTS_GRAPH_1'
 const GET_MED_INCIDENTS_GRAPH_1_FULFILLED = 'GET_MED_INCIDENTS_GRAPH_1_FULFILLED'
-const GET_MED_INCIDENTS_GRAPH_1_PENDING = 'GET_MED_INCIDENTS_GRAPH_1_PENDING'
+
 const GET_MED_INCIDENTS_GRAPH_2 = 'GET_MED_INCIDENTS_GRAPH_2'
 const GET_MED_INCIDENTS_GRAPH_2_FULFILLED = 'GET_MED_INCIDENTS_GRAPH_2_FULFILLED'
-const GET_MED_INCIDENTS_GRAPH_2_PENDING = 'GET_MED_INCIDENTS_GRAPH_2_PENDING'
+
 const CHANGE_GRAPH_1 = 'CHANGE_GRAPH_1'
 const CHANGE_GRAPH_2 = 'CHANGE_GRAPH_2'
 const MED_OR_BEH_INCIDENT_COLUMN = 'MED_OR_BEH_INCIDENT_COLUMN'
@@ -132,10 +132,7 @@ export default function reducer(state = initialState, action) {
             console.log('fulfilled')
             return Object.assign({}, state, { arrayOfBehavioralIncidents: action.payload })
 
-        case GET_BEH_INCIDENTS_GRAPH_1_PENDING:
-
-            console.log('pending')
-            return Object.assign({}, state)
+       
         case GET_BEH_INCIDENTS_GRAPH_1_FULFILLED:
 
             let returnArray1 = []
@@ -172,10 +169,7 @@ export default function reducer(state = initialState, action) {
                 arrayofBehDateStrings1: returnArray1
             })
 
-        case GET_BEH_INCIDENTS_GRAPH_2_PENDING:
-
-            console.log('pending')
-            return Object.assign({}, state)
+       
         case GET_BEH_INCIDENTS_GRAPH_2_FULFILLED:
 
             let returnArray2 = []
@@ -211,10 +205,7 @@ export default function reducer(state = initialState, action) {
                 arrayOfBehCounts2: arrayOfCounts2,
                 arrayofBehDateStrings2: returnArray2
             })
-        case GET_MED_INCIDENTS_GRAPH_1_PENDING:
-
-            console.log('pending')
-            return Object.assign({}, state)
+        
         case GET_MED_INCIDENTS_GRAPH_1_FULFILLED:
 
             let returnArray3 = []
@@ -251,11 +242,7 @@ export default function reducer(state = initialState, action) {
                 arrayofMedDateStrings3: returnArray3
             })
 
-        case GET_MED_INCIDENTS_GRAPH_2_PENDING:
-
-            console.log('pending')
-            return Object.assign({}, state)
-        case GET_MED_INCIDENTS_GRAPH_2_FULFILLED:
+       
 
             let returnArray4 = []
             let lastDay4 = new Date();

@@ -4,6 +4,7 @@ const massive = require('massive')
 require('dotenv').config();
 const app = express()
 
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json())
 app.use(express.static('/../public/build'))
 
@@ -39,7 +40,7 @@ app.get('/api/getBehIncidents',
 app.put('/api/getBehIncidentsGraph',
     (req, res, next) => {
         console.log('hit it', req.body)
-        const dbInstance = req.app.get('db')
+        //const dbInstance = req.app.get('db')
         req.app.get('db').get_last_month_beh([req.body.clientName]).then(
             beh_reports => {
                 
@@ -51,7 +52,7 @@ app.put('/api/getBehIncidentsGraph',
     app.put('/api/getMedIncidentsGraph',
     (req, res, next) => {
         console.log('hit it', req.body)
-        const dbInstance = req.app.get('db')
+        //const dbInstance = req.app.get('db')
         req.app.get('db').get_last_month_med([req.body.clientName]).then(
             med_reports => {
                 console.log(med_reports)
@@ -112,5 +113,5 @@ app.put('/api/updateBehIncident/:id',
                 res.status(200).send(medReports)
             })
     })
-const port = 4000
+const port = process.env.PORT
 app.listen(port, (() => { console.log('YAY') }))
