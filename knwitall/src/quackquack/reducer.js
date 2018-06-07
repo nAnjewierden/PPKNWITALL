@@ -155,7 +155,7 @@ export default function reducer(state = initialState, action) {
                     let payload1 = new Date(action.payload[i].incident_date)
                     let eleDate1 = new Date(ele)
 
-                    if (eleDate1.getTime() === payload1.getTime()) {
+                    if (eleDate1.getUTCDate() === payload1.getUTCDate()) {
                         count1++;
                         console.log(count1)
                     }
@@ -192,7 +192,7 @@ export default function reducer(state = initialState, action) {
                     let payload2 = new Date(action.payload[i].incident_date)
                     let eleDate2 = new Date(ele)
 
-                    if (eleDate2.getTime() === payload2.getTime()) {
+                    if (eleDate2.getUTCDate() === payload2.getUTCDate()) {
                         count2++;
                         console.log(count2)
                     }
@@ -228,7 +228,7 @@ export default function reducer(state = initialState, action) {
                     let payload3 = new Date(action.payload[i].incident_date)
                     let eleDate3 = new Date(ele)
 
-                    if (eleDate3.getTime() === payload3.getTime()) {
+                    if (eleDate3.getUTCDate() === payload3.getUTCDate()) {
                         count3++;
                         console.log(count3)
                     }
@@ -264,7 +264,7 @@ export default function reducer(state = initialState, action) {
                     let payload4 = new Date(action.payload[i].incident_date)
                     let eleDate4 = new Date(ele)
 
-                    if (eleDate4.getTime() === payload4.getTime()) {
+                    if (eleDate4.getUTCDate() === payload4.getUTCDate()) {
                         count4++;
                         console.log(count4)
                     }
