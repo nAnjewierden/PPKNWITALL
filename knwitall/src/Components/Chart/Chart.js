@@ -15,6 +15,7 @@ import { getMedIncidents,
          medOrBehIncidentColumn
         } from '../../quackquack/reducer'
 import Modal from '../behIncidentModal/behIncidentModal'
+import ModalM from '../behIncidentModal/medIncidentModal'
 
 
 class Chart extends Component {
@@ -29,13 +30,13 @@ class Chart extends Component {
     {
 
     
-    this.props.dispatch(getBehIncidentsGraph1())
+    this.props.dispatch(getBehIncidentsGraph1('Client1'))
   
-    this.props.dispatch(getBehIncidentsGraph2())
+    this.props.dispatch(getBehIncidentsGraph2('Client2'))
     
-    this.props.dispatch(getMedIncidentsGraph1())
+    this.props.dispatch(getMedIncidentsGraph1('Client1'))
   
-    this.props.dispatch(getMedIncidentsGraph2())
+    this.props.dispatch(getMedIncidentsGraph2('Client1'))
     }
     handleModalOn(value){
         

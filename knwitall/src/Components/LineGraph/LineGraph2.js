@@ -12,9 +12,9 @@ class LineGraph2 extends Component{
         super()
     }
         render(){
-    console.log(this.props)
-    console.log(this.props.arrayofBehDateStrings2)
-    console.log(this.props.arrayOfBehCounts2)
+    // console.log(this.props)
+    // console.log(this.props.arrayofBehDateStrings2)
+    // console.log(this.props.arrayOfBehCounts2)
     
     if (this.props.medOrBeh2){
     

@@ -65,8 +65,11 @@ const UPDATE_DESCRIPTION_OF_INCIDENT_M = 'UPDATE_DESCRIPTION_OF_INCIDENT_M'
 const UPDATE_ACTION_TAKEN_M = 'UPDATE_ACTION_TAKEN_M'
 const UPDATE_STAFF_INVOLVED_M = 'UPDATE_STAFF_INVOLVED_M'
 const UPDATE_CLIENTS_INVOLVED_M = 'UPDATE_CLIENTS_INVOLVED_M'
-const UPDATE_ALL_B = 'UPDATE_ALL_M'
-const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_M_FULFILLED'
+const UPDATE_ALL_M = 'UPDATE_ALL_M'
+const UPDATE_ALL_M_FULFILLED = 'UPDATE_ALL_M_FULFILLED'
+const DELETE_MED_REPORT = 'DELETE_MED_REPORT'
+const DELETE_MED_REPORT_PENDING = 'DELETE_MED_REPORT_PENDING'
+const DELETE_MED_REPORT_FULFILLED = 'DELETE_MED_REPORT_FULFILLED'
 const GET_BEH_INCIDENTS_GRAPH_1 = 'GET_BEH_INCIDENTS_GRAPH_1'
 const GET_BEH_INCIDENTS_GRAPH_1_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_1_FULFILLED'
 
@@ -202,7 +205,7 @@ export default function reducer(state = initialState, action) {
 
             let returnArray1 = []
             let lastDay1 = new Date();
-            console.log(lastDay1, 'this should be today')
+            // console.log(lastDay1, 'this should be today')
             let y1 = lastDay1.getFullYear();
             let m1 = lastDay1.getMonth();
             let d1 = lastDay1.getDate();
@@ -212,8 +215,8 @@ export default function reducer(state = initialState, action) {
                 returnArray1.push(day1)
 
             }
-            console.log(returnArray1)
-            console.log(action.payload)
+            // console.log(returnArray1)
+            // console.log(action.payload)
             let arrayOfCounts1 = returnArray1.map((ele) => {
                 var count1 = 0;
                 for (let i = 0; i < action.payload.length; i++) {
@@ -222,13 +225,13 @@ export default function reducer(state = initialState, action) {
 
                     if (eleDate1.getUTCDate() === payload1.getUTCDate()) {
                         count1++;
-                        console.log(count1)
+                        // console.log(count1)
                     }
                 }
                 return count1
 
             })
-            console.log(arrayOfCounts1)
+            // console.log(arrayOfCounts1)
             return Object.assign({}, state, {
                 arrayOfBehCounts1: arrayOfCounts1,
                 arrayofBehDateStrings1: returnArray1
@@ -239,7 +242,7 @@ export default function reducer(state = initialState, action) {
 
             let returnArray2 = []
             let lastDay2 = new Date();
-            console.log(lastDay2, 'this should be today')
+            // console.log(lastDay2, 'this should be today')
             let y2 = lastDay2.getFullYear();
             let m2 = lastDay2.getMonth();
             let d2 = lastDay2.getDate();
@@ -249,8 +252,8 @@ export default function reducer(state = initialState, action) {
                 returnArray2.push(day2)
 
             }
-            console.log(returnArray2)
-            console.log(action.payload)
+            // console.log(returnArray2)
+            // console.log(action.payload)
             let arrayOfCounts2 = returnArray2.map((ele) => {
                 var count2 = 0;
                 for (let i = 0; i < action.payload.length; i++) {
@@ -259,13 +262,13 @@ export default function reducer(state = initialState, action) {
 
                     if (eleDate2.getUTCDate() === payload2.getUTCDate()) {
                         count2++;
-                        console.log(count2)
+                        // console.log(count2)
                     }
                 }
                 return count2
 
             })
-            console.log(arrayOfCounts2)
+            // console.log(arrayOfCounts2)
             return Object.assign({}, state, {
                 arrayOfBehCounts2: arrayOfCounts2,
                 arrayofBehDateStrings2: returnArray2
@@ -285,10 +288,10 @@ export default function reducer(state = initialState, action) {
                 returnArray3.push(day3)
 
             }
-            console.log(returnArray3)
-            console.log(action.payload)
+            // console.log(returnArray3)
+            // console.log(action.payload)
             let arrayOfCounts3 = returnArray3.map((ele) => {
-                console.log(action.payload)
+                // console.log(action.payload)
                 var count3 = 0;
                 for (let i = 0; i < action.payload.length; i++) {
                     let payload3 = new Date(action.payload[i].incident_date)
@@ -296,13 +299,13 @@ export default function reducer(state = initialState, action) {
 
                     if (eleDate3.getUTCDate() === payload3.getUTCDate()) {
                         count3++;
-                        console.log(count3)
+                        // console.log(count3)
                     }
                 }
                 return count3
 
             })
-            console.log(arrayOfCounts3)
+            // console.log(arrayOfCounts3)
             return Object.assign({}, state, {
                 arrayOfMedCounts1: arrayOfCounts3,
                 arrayofMedDateStrings1: returnArray3
@@ -521,7 +524,7 @@ export function changeClientsInvolvedM(value) {
     }
 }
 export function getBehIncidentsGraph1(value) {
-    console.log(value)
+    // console.log(value)
     return {
         type: GET_BEH_INCIDENTS_GRAPH_1,
         payload: services.getBehIncidentsGraph(value)

@@ -47,8 +47,8 @@ class LineGraph1 extends Component{
 }
 else {
             
-    console.log(this.props.arrayofMedDateStrings1)
-    console.log(this.props.arrayOfMedCounts1)
+    // console.log(this.props.arrayofMedDateStrings1)
+    // console.log(this.props.arrayOfMedCounts1)
        
     return(
         <div className='lineGraph'>

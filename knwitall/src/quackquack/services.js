@@ -2,14 +2,14 @@ import axios from 'axios'
 
 export const getBehIncidents = function(){
     return axios.get('/api/getBehIncidents').then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
 
 export const getMedIncidents = function(){
     return axios.get('/api/getMedIncidents').then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
@@ -17,7 +17,7 @@ export const getMedIncidents = function(){
 export const deleteBehReport = function(id){
 
     return axios.delete(`/api/deleteBehIncident/${id}`).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
@@ -25,7 +25,7 @@ export const deleteBehReport = function(id){
 export const deleteMedReport = function(id){
 
     return axios.delete(`/api/deleteMedIncident/${id}`).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
@@ -42,7 +42,7 @@ export const updateBehReport = function (clientName, date, duration, behaviorExh
     actionTaken, 
     clientsInvolved,
     staffInvolved}).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
@@ -59,7 +59,7 @@ export const updateMedReport = function (clientName, date, duration, incidentTyp
     actionTaken, 
     clientsInvolved,
     staffInvolved}).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data
     })
 }
@@ -77,7 +77,7 @@ export const getMedIncidentsGraph = function (clientName){
     console.log(clientName)
     return axios.put('/api/getMedIncidentsGraph', {clientName})
     .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         return res.data 
     })
 }

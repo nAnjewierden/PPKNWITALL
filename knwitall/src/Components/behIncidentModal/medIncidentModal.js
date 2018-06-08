@@ -16,7 +16,7 @@ import {deleteMedReport,
 import '../Chart/Chart.css'
 
 
-function Modal(props){
+function ModalM(props){
     
     let modalClientIndex = props.arrayOfMedicalIncidents.findIndex((ele) => props.modalID === ele.id)
     

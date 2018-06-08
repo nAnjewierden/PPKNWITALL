@@ -37,7 +37,7 @@ export default class MedReport extends Component{
         }
         handleDate(){
             let tempDate = new Date().toDateString()
-        console.log(tempDate)
+        // console.log(tempDate)
             this.setState({
                 date: tempDate
             })
