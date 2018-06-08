@@ -12,6 +12,15 @@ let initialState = {
     actionTakenB: 'MUST HAVE VALUE',
     staffInvolvedB: 'MUST HAVE VALUE',
     clientsInvolvedB: 'MUST HAVE VALUE',
+    clientNameB: 'MUST HAVE VALUE',
+    dateM: 0,
+    durationM: 0,
+    behaviorExhibitedM: 'MUST HAVE VALUE',
+    antecedentM: 'MUST HAVE VALUE',
+    descriptionOfIncidentM: 'MUST HAVE VALUE',
+    actionTakenM: 'MUST HAVE VALUE',
+    staffInvolvedM: 'MUST HAVE VALUE',
+    clientsInvolvedM: 'MUST HAVE VALUE',
     arrayOfBehCounts1: [],
     arrayofBehDateStrings1: [],
     arrayOfBehCounts2: [],
@@ -47,6 +56,17 @@ const UPDATE_STAFF_INVOLVED_B = 'UPDATE_STAFF_INVOLVED_B'
 const UPDATE_CLIENTS_INVOLVED_B = 'UPDATE_CLIENTS_INVOLVED_B'
 const UPDATE_ALL_B = 'UPDATE_ALL_B'
 const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_B_FULFILLED'
+const UPDATE_CLIENT_NAME_M = 'UPDATE_CLIENT_NAME_M'
+const UPDATE_DATE_M = 'UPDATE_DATE_M'
+const UPDATE_DURATION_M = 'UPDATE_DURATION_M'
+const UPDATE_BEHAVIOR_EXHIBITED_M = 'UPDATE_BEHAVIOR_EXHIBITED_M'
+const UPDATE_ANTECEDENT_M = 'UPDATE_ANTECEDENT_M'
+const UPDATE_DESCRIPTION_OF_INCIDENT_M = 'UPDATE_DESCRIPTION_OF_INCIDENT_M'
+const UPDATE_ACTION_TAKEN_M = 'UPDATE_ACTION_TAKEN_M'
+const UPDATE_STAFF_INVOLVED_M = 'UPDATE_STAFF_INVOLVED_M'
+const UPDATE_CLIENTS_INVOLVED_M = 'UPDATE_CLIENTS_INVOLVED_M'
+const UPDATE_ALL_B = 'UPDATE_ALL_M'
+const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_M_FULFILLED'
 const GET_BEH_INCIDENTS_GRAPH_1 = 'GET_BEH_INCIDENTS_GRAPH_1'
 const GET_BEH_INCIDENTS_GRAPH_1_FULFILLED = 'GET_BEH_INCIDENTS_GRAPH_1_FULFILLED'
 
@@ -115,6 +135,47 @@ export default function reducer(state = initialState, action) {
                 clientsInvolvedB: 'MUST HAVE VALUE'
             })
 
+        case UPDATE_CLIENT_NAME_M:
+            return Object.assign({}, state, { clientNameM: action.payload })
+
+        case UPDATE_DATE_M:
+            return Object.assign({}, state, { dateM: action.payload })
+
+        case UPDATE_DURATION_M:
+            return Object.assign({}, state, { durationM: action.payload })
+
+        case UPDATE_BEHAVIOR_EXHIBITED_M:
+            return Object.assign({}, state, { behaviorExhibitedM: action.payload })
+
+        case UPDATE_ANTECEDENT_M:
+            return Object.assign({}, state, { antecedentM: action.payload })
+
+        case UPDATE_DESCRIPTION_OF_INCIDENT_M:
+            return Object.assign({}, state, { descriptionOfIncidentM: action.payload })
+
+        case UPDATE_ACTION_TAKEN_M:
+            return Object.assign({}, state, { actionTakenM: action.payload })
+
+        case UPDATE_STAFF_INVOLVED_M:
+            return Object.assign({}, state, { staffInvolvedM: action.payload })
+
+        case UPDATE_CLIENTS_INVOLVED_M:
+            return Object.assign({}, state, { clientsInvolvedM: action.payload })
+
+        case UPDATE_ALL_M_FULFILLED:
+            return Object.assign({}, state, {
+                arrayOfMedicalIncidents: action.payload,
+                clientNameM: 'MUST HAVE VALUE',
+                dateM: 0,
+                durationM: 0,
+                behaviorExhibitedM: 'MUST HAVE VALUE',
+                antecedentM: 'MUST HAVE VALUE',
+                descriptionOfIncidentM: 'MUST HAVE VALUE',
+                actionTakenM: 'MUST HAVE VALUE',
+                staffInvolvedM: 'MUST HAVE VALUE',
+                clientsInvolvedM: 'MUST HAVE VALUE'
+            })
+
         case MAKE_EDITABLE:
             return Object.assign({}, state, { editable: !state.editable }
             )
@@ -131,6 +192,10 @@ export default function reducer(state = initialState, action) {
         case DELETE_BEH_REPORT_FULFILLED:
             console.log('fulfilled')
             return Object.assign({}, state, { arrayOfBehavioralIncidents: action.payload })
+
+        case DELETE_MED_REPORT_FULFILLED:
+            console.log('fulfilled')
+            return Object.assign({}, state, { arrayOfMedicalIncidents: action.payload })
 
        
         case GET_BEH_INCIDENTS_GRAPH_1_FULFILLED:
@@ -375,6 +440,83 @@ export function changeStaffInvolvedB(value) {
 export function changeClientsInvolvedB(value) {
     return {
         type: UPDATE_CLIENTS_INVOLVED_B,
+        payload: value
+    }
+}
+export function deleteMedReport(id) {
+    return {
+        type: DELETE_MED_REPORT,
+        payload: services.deleteMedReport(id)
+    }
+}
+export function updateAllM(clientNameM, dateM, durationM, behaviorExhibitedM, antecedentM, descriptionOfIncidentM, actionTakenM, staffInvolvedM, clientsInvolvedM, id) {
+    return {
+        type: UPDATE_ALL_M,
+        payload: services.updateMedReport(
+            clientNameM,
+            dateM,
+            durationM,
+            behaviorExhibitedM,
+            antecedentM,
+            descriptionOfIncidentM,
+            actionTakenM,
+            staffInvolvedM,
+            clientsInvolvedM,
+            id
+        )
+    }
+}
+export function changeClientNameM(value) {
+    return {
+        type: UPDATE_CLIENT_NAME_M,
+        payload: value
+    }
+}
+export function changeDateM(value) {
+    return {
+        type: UPDATE_DATE_M,
+        payload: value
+    }
+}
+export function changeDurationM(value) {
+    return {
+        type: UPDATE_DURATION_M,
+        payload: value
+    }
+}
+export function changeBehaviorExhibitedM(value) {
+    return {
+        type: UPDATE_BEHAVIOR_EXHIBITED_M,
+        payload: value
+    }
+}
+export function changeAntecedentM(value) {
+    return {
+        type: UPDATE_ANTECEDENT_M,
+        payload: value
+    }
+}
+export function changeDescriptionOfIncidentM(value) {
+    return {
+        type: UPDATE_DESCRIPTION_OF_INCIDENT_M,
+        payload: value
+    }
+}
+export function changeActionTakenM(value) {
+    return {
+        type: UPDATE_ACTION_TAKEN_M,
+        payload: value
+    }
+}
+export function changeStaffInvolvedM(value) {
+    return {
+        type: UPDATE_STAFF_INVOLVED_M,
+        payload: value
+    }
+}
+export function changeClientsInvolvedM(value) {
+    return {
+        type: UPDATE_CLIENTS_INVOLVED_M,
         payload: value
     }
 }

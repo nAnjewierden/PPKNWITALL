@@ -22,6 +22,14 @@ export const deleteBehReport = function(id){
     })
 }
 
+export const deleteMedReport = function(id){
+
+    return axios.delete(`/api/deleteMedIncident/${id}`).then(res => {
+        console.log(res.data)
+        return res.data
+    })
+}
+
 export const updateBehReport = function (clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
     console.log(arguments)
     return axios.put(`/api/updateBehIncident/${id}`,
@@ -29,6 +37,23 @@ export const updateBehReport = function (clientName, date, duration, behaviorExh
     date,  
     duration, 
     behaviorExhibited, 
+    antecedent, 
+    descriptionOfIncident, 
+    actionTaken, 
+    clientsInvolved,
+    staffInvolved}).then(res => {
+        console.log(res.data)
+        return res.data
+    })
+}
+
+export const updateMedReport = function (clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
+    console.log(arguments)
+    return axios.put(`/api/updateBehIncident/${id}`,
+    {clientName, 
+    date,  
+    duration, 
+    incidentType, 
     antecedent, 
     descriptionOfIncident, 
     actionTaken, 

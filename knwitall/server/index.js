@@ -91,6 +91,18 @@ app.delete('/api/deleteBehIncident/:id',
     }
 )
 
+app.delete('/api/deleteMedIncident/:id',
+    (req, res, next) => {
+
+        const dbInstance = req.app.get('db')
+        dbInstance.delete_med_report(req.params.id)
+            .then((medReports) => {
+
+                res.status(200).send(medReports)
+            })
+    }
+)
+
 app.put('/api/updateBehIncident/:id',
     (req, res, next) => {
         const dbInstance = req.app.get('db')

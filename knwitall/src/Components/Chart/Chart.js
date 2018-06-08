@@ -73,7 +73,7 @@ class Chart extends Component {
             let newDate2 = new Date(ele.incident_date)
         
             return (
-                <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
+                <div className='incident' onClick={() => this.handleMedModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
                     <div>Incident Type: {ele.incident_type}</div>
                     <div>Date: {newDate2.toDateString()}</div>
@@ -85,6 +85,9 @@ class Chart extends Component {
         return (
             <div className='full-page'>
                 <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><Modal modalID={this.state.modalID}/>
+                <button onClick={() => this.handleModalOff()}>Close</button>
+                </div>
+                <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><ModalM modalID={this.state.modalID}/>
                 <button onClick={() => this.handleModalOff()}>Close</button>
                 </div>
                 <div className='incident-column'>
