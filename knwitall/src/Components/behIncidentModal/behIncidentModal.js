@@ -17,9 +17,9 @@ import '../Chart/Chart.css'
 
 
 function Modal(props){
-    console.log(props)
+    
     let modalClientIndex = props.arrayOfBehavioralIncidents.findIndex((ele) => props.modalID === ele.id)
-    console.log(modalClientIndex)
+    
     if (props.editable){
         return (<div>
             <div>
@@ -84,6 +84,7 @@ function Modal(props){
 }}
 
 function mapStateToProps(state) {
+    
     return (
         state
     )

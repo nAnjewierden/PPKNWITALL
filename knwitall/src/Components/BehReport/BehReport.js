@@ -37,7 +37,7 @@ export default class BehReport extends Component{
     }
     handleDate(){
         let tempDate = new Date().toDateString()
-    console.log(tempDate)
+    
         this.setState({
             date: tempDate
         })
@@ -90,7 +90,7 @@ export default class BehReport extends Component{
             clientsInvolved, 
             staffInvolved } = this.state
             this.handleDate()
-            console.log(this.state)
+           
         axios.post('/api/reportB', {
             clientName, 
             date,  
@@ -120,7 +120,7 @@ export default class BehReport extends Component{
         })
     }
     render(){
-        console.log(this.state)
+        
         return (
         <div className='mainDiv'>
         

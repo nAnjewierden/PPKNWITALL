@@ -28,7 +28,7 @@ app.get('/api/getBehIncidents',
     })
     app.get('/api/getMedIncidents',
     (req, res, next) => {
-       
+       console.log('hit it getmedincidents')
         //const dbInstance = req.app.get('db')
         req.app.get('db').get_med_reports().then(
             med_reports => {
@@ -95,8 +95,6 @@ app.put('/api/updateBehIncident/:id',
     (req, res, next) => {
         const dbInstance = req.app.get('db')
         const { clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
-        console.log(req.body)
-        console.log({ clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved })
         dbInstance.update_beh_report([clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, req.params.id])
             .then((behReports) => {
                 res.status(200).send(behReports)
@@ -106,8 +104,6 @@ app.put('/api/updateBehIncident/:id',
     (req, res, next) => {
         const dbInstance = req.app.get('db')
         const { clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved } = req.body
-        console.log(req.body)
-        console.log({ clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved })
         dbInstance.update_med_report([clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, req.params.id])
             .then((medReports) => {
                 res.status(200).send(medReports)

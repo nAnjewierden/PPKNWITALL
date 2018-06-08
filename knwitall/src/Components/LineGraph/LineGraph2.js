@@ -57,7 +57,7 @@ else {
                         label: 'Number of Incidents',
                         //array of integers, one for each day of the last month, each representing the number of beh incidents that day
                         
-                        data: this.props.arrayOfMedCounts2,
+                        data: this.props.arrayOfMedCounts,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                         ],

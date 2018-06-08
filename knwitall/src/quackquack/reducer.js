@@ -223,6 +223,7 @@ export default function reducer(state = initialState, action) {
             console.log(returnArray3)
             console.log(action.payload)
             let arrayOfCounts3 = returnArray3.map((ele) => {
+                console.log(action.payload)
                 var count3 = 0;
                 for (let i = 0; i < action.payload.length; i++) {
                     let payload3 = new Date(action.payload[i].incident_date)
@@ -238,11 +239,11 @@ export default function reducer(state = initialState, action) {
             })
             console.log(arrayOfCounts3)
             return Object.assign({}, state, {
-                arrayOfMedCounts3: arrayOfCounts3,
-                arrayofMedDateStrings3: returnArray3
+                arrayOfMedCounts1: arrayOfCounts3,
+                arrayofMedDateStrings1: returnArray3
             })
 
-       
+            case GET_MED_INCIDENTS_GRAPH_2_FULFILLED:
 
             let returnArray4 = []
             let lastDay4 = new Date();
@@ -274,8 +275,8 @@ export default function reducer(state = initialState, action) {
             })
             console.log(arrayOfCounts4)
             return Object.assign({}, state, {
-                arrayOfMedCounts4: arrayOfCounts4,
-                arrayofMedDateStrings4: returnArray4
+                arrayOfMedCounts2: arrayOfCounts4,
+                arrayofMedDateStrings2: returnArray4
             })
         default: return state
     }
@@ -288,9 +289,11 @@ export function getBehIncidents() {
     }
 }
 export function getMedIncidents() {
+    let data = services.getMedIncidents()
+    console.log(data, 'asdjjfhkladsjhf')
     return {
         type: GET_MED_INCIDENTS,
-        payload: services.getMedIncidents()
+        payload: data
     }
 }
 export function deleteBehReport(id) {

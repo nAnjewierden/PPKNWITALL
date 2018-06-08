@@ -12,9 +12,9 @@ class LineGraph1 extends Component{
         super()
     }
         render(){
-    console.log(this.props)
-    console.log(this.props.arrayofBehDateStrings1)
-    console.log(this.props.arrayOfBehCounts1)
+
+
+ 
     
     if (this.props.medOrBeh1){
     
@@ -46,6 +46,10 @@ class LineGraph1 extends Component{
     </div>)
 }
 else {
+            
+    console.log(this.props.arrayofMedDateStrings1)
+    console.log(this.props.arrayOfMedCounts1)
+       
     return(
         <div className='lineGraph'>
        

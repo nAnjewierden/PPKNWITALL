@@ -28,17 +28,17 @@ class Chart extends Component {
     componentWillMount()
     {
 
-    console.log(this.props.dispatch(getBehIncidentsGraph1('Client1')))
+    
     this.props.dispatch(getBehIncidentsGraph1())
-    console.log(this.props.dispatch(getBehIncidentsGraph2('Client2')))
+  
     this.props.dispatch(getBehIncidentsGraph2())
-    console.log(this.props.dispatch(getMedIncidentsGraph1('Client1')))
+    
     this.props.dispatch(getMedIncidentsGraph1())
-    console.log(this.props.dispatch(getMedIncidentsGraph2('Client2')))
+  
     this.props.dispatch(getMedIncidentsGraph2())
     }
     handleModalOn(value){
-        console.log(value)
+        
         this.setState({
             modalOn: true,
             modalID: value
@@ -59,7 +59,7 @@ class Chart extends Component {
 
         let behIncidents = this.props.arrayOfBehavioralIncidents.map((ele) => {
             let newDate1 = new Date(ele.incident_date)
-            console.log(newDate1.toDateString())
+          
             return (
                 <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
@@ -71,7 +71,7 @@ class Chart extends Component {
 
         let medIncidents = this.props.arrayOfMedicalIncidents.map((ele) => {
             let newDate2 = new Date(ele.incident_date)
-            console.log(newDate2.toDateString())
+        
             return (
                 <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
@@ -81,7 +81,7 @@ class Chart extends Component {
             )
         })
 
-        console.log(this.state)
+
         return (
             <div className='full-page'>
                 <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><Modal modalID={this.state.modalID}/>
