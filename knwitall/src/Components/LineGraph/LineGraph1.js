@@ -17,7 +17,7 @@ class LineGraph1 extends Component{
  
     
     if (this.props.medOrBeh1){
-    
+    console.log(this.props, 'props1')
     return(
     <div className='lineGraph'>
    
@@ -46,7 +46,8 @@ class LineGraph1 extends Component{
     </div>)
 }
 else {
-            
+    console.log(this.props, 'props1')
+       
     // console.log(this.props.arrayofMedDateStrings1)
     // console.log(this.props.arrayOfMedCounts1)
        

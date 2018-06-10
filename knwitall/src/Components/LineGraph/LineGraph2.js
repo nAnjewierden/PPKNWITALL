@@ -17,7 +17,7 @@ class LineGraph2 extends Component{
     // console.log(this.props.arrayOfBehCounts2)
     
     if (this.props.medOrBeh2){
-    
+    console.log(this.props, 'this.props')
     return(
     <div className='lineGraph'>
    
@@ -46,6 +46,7 @@ class LineGraph2 extends Component{
     </div>)
 }
 else {
+    console.log(this.props.arrayofMedDateStrings2, 'this.props.arrayofMedDateStrings2')
     return(
         <div className='lineGraph'>
        
@@ -57,7 +58,7 @@ else {
                         label: 'Number of Incidents',
                         //array of integers, one for each day of the last month, each representing the number of beh incidents that day
                         
-                        data: this.props.arrayOfMedCounts,
+                        data: this.props.arrayOfMedCounts2,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                         ],

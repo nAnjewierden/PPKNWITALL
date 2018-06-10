@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {deleteBehReport, 
         makeEditable,
         changeClientNameB,
-        changeDateB,
         changeDurationB,
         changeBehaviorExhibitedB,
         changeAntecedentB,
@@ -17,17 +16,16 @@ import '../Chart/Chart.css'
 
 
 function Modal(props){
-    
+    console.log(props, 'behmodal props')
     let modalClientIndex = props.arrayOfBehavioralIncidents.findIndex((ele) => props.modalID === ele.id)
-    
+    console.log(modalClientIndex)
+    console.log(props.arrayOfBehavioralIncidents[modalClientIndex])
     if (props.editable){
         return (<div>
             <div>
             Client Name: <input onChange={(ele => props.changeClientNameB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].client_name}`}/>
             </div>
-            <div>
-            Date Of Incident: <input onChange={(ele => props.changeDateB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].incident_date}`}/>
-            </div>
+            
             <div>
             Duration Of Incident: <input onChange={(ele => props.changeDurationB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].duration}`}/>
             </div>
@@ -50,7 +48,7 @@ function Modal(props){
             Clients Involved: <input onChange={(ele => props.changeClientsInvolvedB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].clients_involved}`}/>
             </div>
             <button onClick={() => props.makeEditable()}>Edit</button>
-            <button onClick={() => props.updateAllB(props.clientNameB, props.dateB, props.timeB, props.durationB, props.behaviorExhibitedB, props.antecedentB, props.descriptionOfIncidentB, props.actionTakenB, props.staffInvolvedB, props.clientsInvolvedB, props.modalID)}>Make Changes</button>
+            <button onClick={() => props.updateAllB(props.clientNameB, props.durationB, props.behaviorExhibitedB, props.antecedentB, props.descriptionOfIncidentB, props.actionTakenB, props.staffInvolvedB, props.clientsInvolvedB, props.modalID)}>Make Changes</button>
             </div>)
     }
     else{
@@ -84,7 +82,7 @@ function Modal(props){
 }}
 
 function mapStateToProps(state) {
-    
+    console.log(state)
     return (
         state
     )
@@ -94,7 +92,6 @@ export default connect(mapStateToProps, {
     deleteBehReport, 
     makeEditable,
     changeClientNameB,
-    changeDateB,
     changeDurationB,
     changeBehaviorExhibitedB,
     changeAntecedentB,

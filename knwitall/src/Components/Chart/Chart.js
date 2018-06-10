@@ -23,7 +23,9 @@ class Chart extends Component {
         super()
         this.state = {
             modalOn: false,
-            modalID: 0
+            medModalOn: false,
+            modalID: 0,
+            medModalID: 0,
         }
     }
     componentWillMount()
@@ -51,6 +53,19 @@ class Chart extends Component {
             modalID: 0
         })
     }
+    handleMedModalOn(value){
+        
+        this.setState({
+            medModalOn: true,
+            medModalID: value
+        })
+    }
+    handleMedModalOff(){
+        this.setState({
+            medModalOn: false,
+            medModalID: 0
+        })
+    }
     componentDidMount() {
         this.props.dispatch(getBehIncidents())
         this.props.dispatch(getMedIncidents())
@@ -60,7 +75,7 @@ class Chart extends Component {
 
         let behIncidents = this.props.arrayOfBehavioralIncidents.map((ele) => {
             let newDate1 = new Date(ele.incident_date)
-          
+            console.log(behIncidents)
             return (
                 <div className='incident' onClick={() => this.handleModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
@@ -69,10 +84,12 @@ class Chart extends Component {
                 </div>
             )
         })
-
+        console.log(this.props.arrayOfMedicalIncidents)
+        console.log(this.props)
         let medIncidents = this.props.arrayOfMedicalIncidents.map((ele) => {
             let newDate2 = new Date(ele.incident_date)
-        
+            console.log(medIncidents)
+            console.log(ele.id)
             return (
                 <div className='incident' onClick={() => this.handleMedModalOn(ele.id)} key={ele.id}>
                     <div>Name: {ele.client_name}</div>
@@ -88,8 +105,8 @@ class Chart extends Component {
                 <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><Modal modalID={this.state.modalID}/>
                 <button onClick={() => this.handleModalOff()}>Close</button>
                 </div>
-                <div className={`incidentModal  ${this.state.modalOn ? '' : 'hideOn'}`}><ModalM modalID={this.state.modalID}/>
-                <button onClick={() => this.handleModalOff()}>Close</button>
+                <div className={`incidentModalM  ${this.state.medModalOn ? '' : 'hideOnM'}`}><ModalM medModalID={this.state.medModalID}/>
+                <button onClick={() => this.handleMedModalOff()}>Close</button>
                 </div>
                 <div className='incident-column'>
                 <button onClick={ele => this.props.dispatch(medOrBehIncidentColumn())}>Change</button>

@@ -30,11 +30,10 @@ export const deleteMedReport = function(id){
     })
 }
 
-export const updateBehReport = function (clientName, date, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
+export const updateBehReport = function (clientName, duration, behaviorExhibited, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
     console.log(arguments)
     return axios.put(`/api/updateBehIncident/${id}`,
-    {clientName, 
-    date,  
+    {clientName,   
     duration, 
     behaviorExhibited, 
     antecedent, 
@@ -47,11 +46,10 @@ export const updateBehReport = function (clientName, date, duration, behaviorExh
     })
 }
 
-export const updateMedReport = function (clientName, date, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
+export const updateMedReport = function (clientName, duration, incidentType, antecedent, descriptionOfIncident, actionTaken, staffInvolved, clientsInvolved, id){
     console.log(arguments)
-    return axios.put(`/api/updateBehIncident/${id}`,
+    return axios.put(`/api/updateMedIncident/${id}`,
     {clientName, 
-    date,  
     duration, 
     incidentType, 
     antecedent, 
@@ -77,7 +75,7 @@ export const getMedIncidentsGraph = function (clientName){
     console.log(clientName)
     return axios.put('/api/getMedIncidentsGraph', {clientName})
     .then(res => {
-        // console.log(res.data)
+        console.log(res.data, 'get med graph data')
         return res.data 
     })
 }

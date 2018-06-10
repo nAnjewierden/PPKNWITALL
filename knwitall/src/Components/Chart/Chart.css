@@ -25,8 +25,21 @@
 .hideOn{
     display: none
 }
+.hideOnM{
+    display: none
+}
 
 .incidentModal{
+    position: fixed;
+    align-content: center;
+    background: white;
+    height: 80%;
+    width: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.incidentModalM{
     position: fixed;
     align-content: center;
     background: white;

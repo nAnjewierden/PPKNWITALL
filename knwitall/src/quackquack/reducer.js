@@ -3,6 +3,7 @@ let initialState = {
     arrayOfBehavioralIncidents: [],
     arrayOfMedicalIncidents: [],
     editable: false,
+    editableM: false,
     clientNameB: 'MUST HAVE VALUE',
     dateB: 0,
     durationB: 0,
@@ -12,10 +13,10 @@ let initialState = {
     actionTakenB: 'MUST HAVE VALUE',
     staffInvolvedB: 'MUST HAVE VALUE',
     clientsInvolvedB: 'MUST HAVE VALUE',
-    clientNameB: 'MUST HAVE VALUE',
+    clientNameM: 'MUST HAVE VALUE',
     dateM: 0,
     durationM: 0,
-    behaviorExhibitedM: 'MUST HAVE VALUE',
+    incidentType: 'MUST HAVE VALUE',
     antecedentM: 'MUST HAVE VALUE',
     descriptionOfIncidentM: 'MUST HAVE VALUE',
     actionTakenM: 'MUST HAVE VALUE',
@@ -45,8 +46,8 @@ const DELETE_BEH_REPORT = 'DELETE_BEH_REPORT'
 const DELETE_BEH_REPORT_PENDING = 'DELETE_BEH_REPORT_PENDING'
 const DELETE_BEH_REPORT_FULFILLED = 'DELETE_BEH_REPORT_FULFILLED'
 const MAKE_EDITABLE = 'MAKE_EDITABLE'
+const MAKE_EDITABLE_M = 'MAKE_EDITABLE_M'
 const UPDATE_CLIENT_NAME_B = 'UPDATE_CLIENT_NAME_B'
-const UPDATE_DATE_B = 'UPDATE_DATE_B'
 const UPDATE_DURATION_B = 'UPDATE_DURATION_B'
 const UPDATE_BEHAVIOR_EXHIBITED_B = 'UPDATE_BEHAVIOR_EXHIBITED_B'
 const UPDATE_ANTECEDENT_B = 'UPDATE_ANTECEDENT_B'
@@ -57,9 +58,8 @@ const UPDATE_CLIENTS_INVOLVED_B = 'UPDATE_CLIENTS_INVOLVED_B'
 const UPDATE_ALL_B = 'UPDATE_ALL_B'
 const UPDATE_ALL_B_FULFILLED = 'UPDATE_ALL_B_FULFILLED'
 const UPDATE_CLIENT_NAME_M = 'UPDATE_CLIENT_NAME_M'
-const UPDATE_DATE_M = 'UPDATE_DATE_M'
 const UPDATE_DURATION_M = 'UPDATE_DURATION_M'
-const UPDATE_BEHAVIOR_EXHIBITED_M = 'UPDATE_BEHAVIOR_EXHIBITED_M'
+const UPDATE_INCIDENT_TYPE = 'UPDATE_INCIDENT_TYPE'
 const UPDATE_ANTECEDENT_M = 'UPDATE_ANTECEDENT_M'
 const UPDATE_DESCRIPTION_OF_INCIDENT_M = 'UPDATE_DESCRIPTION_OF_INCIDENT_M'
 const UPDATE_ACTION_TAKEN_M = 'UPDATE_ACTION_TAKEN_M'
@@ -95,9 +95,6 @@ export default function reducer(state = initialState, action) {
         case UPDATE_CLIENT_NAME_B:
             return Object.assign({}, state, { clientNameB: action.payload })
 
-        case UPDATE_DATE_B:
-            return Object.assign({}, state, { dateB: action.payload })
-
         case UPDATE_DURATION_B:
             return Object.assign({}, state, { durationB: action.payload })
 
@@ -128,7 +125,6 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 arrayOfBehavioralIncidents: action.payload,
                 clientNameB: 'MUST HAVE VALUE',
-                dateB: 0,
                 durationB: 0,
                 behaviorExhibitedB: 'MUST HAVE VALUE',
                 antecedentB: 'MUST HAVE VALUE',
@@ -141,14 +137,11 @@ export default function reducer(state = initialState, action) {
         case UPDATE_CLIENT_NAME_M:
             return Object.assign({}, state, { clientNameM: action.payload })
 
-        case UPDATE_DATE_M:
-            return Object.assign({}, state, { dateM: action.payload })
-
         case UPDATE_DURATION_M:
             return Object.assign({}, state, { durationM: action.payload })
 
-        case UPDATE_BEHAVIOR_EXHIBITED_M:
-            return Object.assign({}, state, { behaviorExhibitedM: action.payload })
+        case UPDATE_INCIDENT_TYPE:
+            return Object.assign({}, state, { incidentType: action.payload })
 
         case UPDATE_ANTECEDENT_M:
             return Object.assign({}, state, { antecedentM: action.payload })
@@ -169,9 +162,8 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 arrayOfMedicalIncidents: action.payload,
                 clientNameM: 'MUST HAVE VALUE',
-                dateM: 0,
                 durationM: 0,
-                behaviorExhibitedM: 'MUST HAVE VALUE',
+                incidentType: 'MUST HAVE VALUE',
                 antecedentM: 'MUST HAVE VALUE',
                 descriptionOfIncidentM: 'MUST HAVE VALUE',
                 actionTakenM: 'MUST HAVE VALUE',
@@ -182,7 +174,11 @@ export default function reducer(state = initialState, action) {
         case MAKE_EDITABLE:
             return Object.assign({}, state, { editable: !state.editable }
             )
-
+            
+        case MAKE_EDITABLE_M:
+            return Object.assign({}, state, { editableM: !state.editableM }
+            )
+   
         case CHANGE_GRAPH_1:
             return Object.assign({}, state, { medOrBeh1: !state.medOrBeh1 })
 
@@ -370,12 +366,11 @@ export function deleteBehReport(id) {
         payload: services.deleteBehReport(id)
     }
 }
-export function updateAllB(clientNameB, dateB, durationB, behaviorExhibitedB, antecedentB, descriptionOfIncidentB, actionTakenB, staffInvolvedB, clientsInvolvedB, id) {
+export function updateAllB(clientNameB, durationB, behaviorExhibitedB, antecedentB, descriptionOfIncidentB, actionTakenB, staffInvolvedB, clientsInvolvedB, id) {
     return {
         type: UPDATE_ALL_B,
         payload: services.updateBehReport(
             clientNameB,
-            dateB,
             durationB,
             behaviorExhibitedB,
             antecedentB,
@@ -392,18 +387,18 @@ export function makeEditable() {
         type: MAKE_EDITABLE
     }
 }
+export function makeEditableM() {
+    return {
+        type: MAKE_EDITABLE_M
+    }
+}
 export function changeClientNameB(value) {
     return {
         type: UPDATE_CLIENT_NAME_B,
         payload: value
     }
 }
-export function changeDateB(value) {
-    return {
-        type: UPDATE_DATE_B,
-        payload: value
-    }
-}
+
 export function changeDurationB(value) {
     return {
         type: UPDATE_DURATION_B,
@@ -452,14 +447,14 @@ export function deleteMedReport(id) {
         payload: services.deleteMedReport(id)
     }
 }
-export function updateAllM(clientNameM, dateM, durationM, behaviorExhibitedM, antecedentM, descriptionOfIncidentM, actionTakenM, staffInvolvedM, clientsInvolvedM, id) {
+export function updateAllM(clientNameM, durationM, incidentType, antecedentM, descriptionOfIncidentM, actionTakenM, staffInvolvedM, clientsInvolvedM, id) {
+    console.log(incidentType)
     return {
         type: UPDATE_ALL_M,
         payload: services.updateMedReport(
             clientNameM,
-            dateM,
             durationM,
-            behaviorExhibitedM,
+            incidentType,
             antecedentM,
             descriptionOfIncidentM,
             actionTakenM,
@@ -475,21 +470,15 @@ export function changeClientNameM(value) {
         payload: value
     }
 }
-export function changeDateM(value) {
-    return {
-        type: UPDATE_DATE_M,
-        payload: value
-    }
-}
 export function changeDurationM(value) {
     return {
         type: UPDATE_DURATION_M,
         payload: value
     }
 }
-export function changeBehaviorExhibitedM(value) {
+export function changeIncidentType(value) {
     return {
-        type: UPDATE_BEHAVIOR_EXHIBITED_M,
+        type: UPDATE_INCIDENT_TYPE,
         payload: value
     }
 }
