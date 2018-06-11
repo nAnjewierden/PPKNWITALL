@@ -42,6 +42,7 @@
 }
 .incidentModalM{
     position: fixed;
+    z-index: 1;
     align-content: center;
     background: white;
     height: 80%;
