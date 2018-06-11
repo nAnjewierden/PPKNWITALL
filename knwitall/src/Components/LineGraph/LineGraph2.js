@@ -46,7 +46,7 @@ class LineGraph2 extends Component{
     </div>)
 }
 else {
-    console.log(this.props.arrayofMedDateStrings2, 'this.props.arrayofMedDateStrings2')
+    console.log(this.props.arrayofMedDateStrings2, 'this.props.arrayofMedDateStrings2') 
     return(
         <div className='lineGraph'>
        
