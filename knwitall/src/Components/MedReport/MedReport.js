@@ -119,7 +119,7 @@ export default class MedReport extends Component{
     
         <div className='mainDiv'>
         
-        <h1 className='header'>Medical Incident Report</h1>
+        <h1 className='header'>Medical Incident</h1>
         
         <form className='form'>
         
@@ -205,14 +205,16 @@ export default class MedReport extends Component{
             </div>
             
             <div className='input bottom-input'>
-            Action Taken: 
+            Response: 
             <textarea name="actionTakenM" rows="5" cols="30" onChange={ele => this.handleActionTaken(ele.target.value)} 
             value={this.state.actionTaken}/>
             </div>
 
             </div>
-            <button onClick={() => this.handleDate()}>get date</button>
-            <div className='button-group'><button className='button input' 
+            
+            <div className='button-group'>
+            <button className='button input' onClick={() => this.handleDate()}>get date</button>
+            <button className='button input' 
             onClick={() => this.handleCancel()}>
             Cancel
             </button>

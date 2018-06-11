@@ -109,14 +109,15 @@ class Chart extends Component {
                 <button onClick={() => this.handleMedModalOff()}>Close</button>
                 </div>
                 <div className='incident-column'>
-                <button onClick={ele => this.props.dispatch(medOrBehIncidentColumn())}>Change</button>
+                <div className='button-group'>
+                <button className='buttonCH inputCh' onClick={ele => this.props.dispatch(medOrBehIncidentColumn())}>Change</button>
+                </div>
                 {this.props.medOrBehIncidentColumn ? behIncidents : medIncidents}
                 </div>
                 <div className='graphColumn'>
-                <button onClick={() => this.props.dispatch(changeGraph1())}>Change</button>
-                <LineGraph1/>
-                Client: 
-            <select onChange={this.props.medOrBeh1 ? 
+                <div className='button-group'>
+                <button className='buttonCH inputCH' onClick={() => this.props.dispatch(changeGraph1())}>Change</button>
+                Client: <select onChange={this.props.medOrBeh1 ? 
             
             (ele) => this.props.dispatch(getBehIncidentsGraph1(ele.target.value))
             :
@@ -129,8 +130,12 @@ class Chart extends Component {
                 <option value="Client4">Client 4</option>
                 <option value="Client5">Client 5</option>
                 </select>
-                <button onClick={() => this.props.dispatch(changeGraph2())}>Change</button>
-                <LineGraph2/>
+                </div>
+                
+                <LineGraph1 className='lineGraph'/>
+                
+                <div className='button-group'>
+                <button className='buttonCH inputCH' onClick={() => this.props.dispatch(changeGraph2())}>Change</button>
                 Client: 
                 <select onChange={this.props.medOrBeh2 ? 
             
@@ -145,6 +150,9 @@ class Chart extends Component {
                 <option value="Client4">Client 4</option>
                 <option value="Client5">Client 5</option>
                 </select>
+                </div>
+                <LineGraph2 className='lineGraph'/>
+                
                 </div>
             </div>
         )

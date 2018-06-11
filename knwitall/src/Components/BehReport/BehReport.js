@@ -124,7 +124,7 @@ export default class BehReport extends Component{
         return (
         <div className='mainDiv'>
         
-        <h1 className='header'>Behavioral Incident Report</h1>
+        <h1 className='header'>Behavioral Incident</h1>
         
         <form className='form'>
         
@@ -159,7 +159,7 @@ export default class BehReport extends Component{
             value={this.state.duration}/></div>
 
             <div className='input'>
-            Behaviors Exhibited: 
+            Behavior: 
             <select
             onChange={(ele) => this.handleBehaviorExhibited(ele.target.value)} 
             value={this.state.behaviorExhibited}>
@@ -215,13 +215,16 @@ export default class BehReport extends Component{
             </div>
             
             <div className='input bottom-input'>
-            Action Taken: 
+            Response: 
             <textarea name="actionTakenB" rows="5" cols="30" onChange={ele => this.handleActionTaken(ele.target.value)} 
             value={this.state.actionTaken}/>
             </div>
-            <button onClick={() => this.handleDate()}>get date</button>
+            
             </div>
-            <div className="button-group"><button className='button input' 
+            
+            <div className="button-group">
+            <button className='button input' onClick={() => this.handleDate()}>get date</button>
+            <button className='button input' 
             onClick={() => this.handleCancel()}>
             Cancel
             </button>

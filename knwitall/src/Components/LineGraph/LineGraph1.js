@@ -21,7 +21,7 @@ class LineGraph1 extends Component{
     return(
     <div className='lineGraph'>
    
-        <Line  className='graph' data={{
+        <Line height='110px' className='graph' data={{
             //array of strings, one for each day of last month
             labels: this.props.arrayofBehDateStrings1,
             datasets: [
@@ -54,7 +54,7 @@ else {
     return(
         <div className='lineGraph'>
        
-            <Line  className='graph' data={{
+            <Line height='110px' className='graph' data={{
                 //array of strings, one for each day of last month
                 labels: this.props.arrayofMedDateStrings1,
                 datasets: [
@@ -63,6 +63,10 @@ else {
                         //array of integers, one for each day of the last month, each representing the number of beh incidents that day
                         
                         data: this.props.arrayOfMedCounts1,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false 
+                        },
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                         ],

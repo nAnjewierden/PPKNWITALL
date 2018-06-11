@@ -54,7 +54,7 @@
 
 
 .bottom-group{
-    height: 28%
+    height: 30%
 }
 
 textarea{
@@ -70,6 +70,8 @@ display: flex
     }
 }
 @media (max-width: 843px) { 
+
+   
 
     .group{
         display: inline;

@@ -8,7 +8,7 @@
 .incident-column{
     height: 100%;
     width: 30%;
-    background: white;
+    background: black;
     overflow-x: auto;
 }
 
@@ -31,6 +31,7 @@
 
 .incidentModal{
     position: fixed;
+    z-index: 1;
     align-content: center;
     background: white;
     height: 80%;
@@ -53,5 +54,71 @@
 .graphColumn{
     height: 100%;
     width: 70%;
-    align-items: center
+    align-items: center;
+    background: black;
+}
+
+.lineGraph{
+    
+    height: 50%;
+    width: 100%;
+}
+
+.inputCH{
+    background: gray;
+    border-width: 3px;
+    border-color: black;
+    border-style: solid;
+    margin: 5px;
+    padding: 3px;
+    width: 50%;
+    height: 95%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 3vh;
+}
+
+.groupCH{
+    display: flex;
+    justify-content: center;
+    margin: 10 auto;
+    height: 20%;
+    
+}
+
+
+@media (max-width: 843px) {
+    .incidentModal{
+        position: fixed;
+        align-content: center;
+        background: white;
+        height: 90%;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .incidentModalM{
+        position: fixed;
+        align-content: center;
+        background: white;
+        height: 90%;
+        width: 100%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .lineGraph{
+        /* position: relative; */
+        display: none
+    }
+    .graphColumn{
+        display: none
+    }
+    .incident-column{
+        height: 100%;
+        width: 100%;
+        
+        overflow-x: auto;
+}
 }

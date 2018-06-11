@@ -1,12 +1,45 @@
-.lineGraph{
-    margin: 0 auto;
+ .lineGraph{
+    margin-bottom: 10%;
     background: black;
-    
-}
-
-canvas{
+     box-sizing: border-box;  
+    height: 30%;
     width: 100%;
-    height: 100%; 
- 
-   
-}
+    position: relative;
+} 
+/* .graph{
+    height: 80%;
+    width: 80%
+} 
+
+@media (min-width: 1171px) {
+    .lineGraph{
+        margin: 0 auto;
+        background: black;
+       
+        height: 42%;
+        width: 100%;
+    }
+    .graph{
+        height: 60%;
+        width: 80%
+    }
+}  */
+/* @media (min-width: 1171px) {
+    .lineGraph{
+        margin: 0 auto;
+        background: black;
+       
+        height: 37vh;
+        width: 52vw;
+    }
+} */
+
+/* @media (max-width: 16px) {
+    .lineGraph{
+        margin: 0 auto;
+        background: black;
+       
+        height: 32vh;
+        width: 52vw;
+    }
+} */

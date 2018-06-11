@@ -9,8 +9,8 @@ class App extends Component {
     return (
       <div className="App">
         <nav className="nav-bar">
-          <Link to='/' className="nav-item"><h4>Medical Report</h4></Link>
-          <Link to='/behavior' className="nav-item"><h4>Behavior Report</h4></Link>
+          <Link to='/' className="nav-item"><h4>Medical</h4></Link>
+          <Link to='/behavior' className="nav-item"><h4>Behavioral</h4></Link>
           <Link to='/chart' className="nav-item"><h4>Data</h4></Link>
         </nav>
         <div className='routeDiv'>

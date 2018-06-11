@@ -12,7 +12,7 @@ import {deleteBehReport,
         changeClientsInvolvedB,
         updateAllB
                 } from '../../quackquack/reducer'
-import '../Chart/Chart.css'
+        import './modal.css'
 
 
 function Modal(props){
@@ -21,52 +21,69 @@ function Modal(props){
     console.log(modalClientIndex)
     console.log(props.arrayOfBehavioralIncidents[modalClientIndex])
     if (props.editable){
-        return (<div>
-            <div>
+        return (<div className='modal'>
+        <div className='groupM'>
+            <div className='modalBox'>
             Client Name: <input onChange={(ele => props.changeClientNameB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].client_name}`}/>
             </div>
             
-            <div>
+            <div className='modalBox'>
             Duration Of Incident: <input onChange={(ele => props.changeDurationB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].duration}`}/>
             </div>
-            <div>
+            <div className='modalBox behE'>
             Behavior Exhibited: <input onChange={(ele => props.changeBehaviorExhibitedB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].behavior_exhibited}`}/>
             </div>
-            <div>
+            </div>
+            <div className='groupM'>
+            <div className='modalBox'>
             Antecedent: <input onChange={(ele => props.changeAntecedentB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].antecedent}`}/>
             </div>
-            <div>
+            <div className='modalBox'>
             Description Of Incident: <input onChange={(ele => props.changeDescriptionOfIncidentB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].description_of_incident}`}/>
             </div>
-            <div>
+            <div className='modalBox'>
             Actions Taken: <input onChange={(ele => props.changeActionTakenB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].action_taken}`}/>
             </div>
-            <div>
+            </div>
+            <div className='groupM'>
+            <div className='modalBox'>
             Staff Involved: <input onChange={(ele => props.changeStaffInvolvedB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].staff_involved}`}/>
             </div>
-            <div>
+            <div className='modalBox'>
             Clients Involved: <input onChange={(ele => props.changeClientsInvolvedB(ele.target.value))} type='text' placeholder={`${props.arrayOfBehavioralIncidents[modalClientIndex].clients_involved}`}/>
             </div>
+            </div>
+            <div className='groupM'>
             <button onClick={() => props.makeEditable()}>Edit</button>
             <button onClick={() => props.updateAllB(props.clientNameB, props.durationB, props.behaviorExhibitedB, props.antecedentB, props.descriptionOfIncidentB, props.actionTakenB, props.staffInvolvedB, props.clientsInvolvedB, props.modalID)}>Make Changes</button>
+            </div>
             </div>)
     }
     else{
     return(<div  className='modal'>
-        <div>Client Name: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].client_name : 'DELETED'}`}</div>
-        <div>Date Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].incident_date : 'DELETED'}`}</div>
-        <div>Duration Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].duration : 'DELETED'}`}</div>
-        <div>Behavior Exhibited: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].behavior_exhibited : 'DELETED'}`}</div>
-        <div>Antecedent: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].antecedent : 'DELETED'}`}</div>
-        <div>Description Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].description_of_incident : 'DELETED'}`}</div>
-        <div>Action Taken: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].action_taken : 'DELETED'}`}</div>
-        <div>Staff Involved: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].staff_involved : 'DELETED'}`}</div>
-        <div>Clients Involved: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].clients_involved : 'DELETED'}`}</div>
+        <div className='groupM'>
+        <div className='modalBoxM'>Client Name: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].client_name : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Date Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].incident_date : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Duration Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].duration : 'DELETED'}`}</div>
+        </div>
+        <div className='groupM'>
+        <div className='modalBoxM'>Behavior Exhibited: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].behavior_exhibited : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Antecedent: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].antecedent : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Description Of Incident: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].description_of_incident : 'DELETED'}`}</div>
+        </div>
+        <div className='groupM'>
+        <div className='modalBoxM'>Action Taken: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].action_taken : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Staff Involved: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].staff_involved : 'DELETED'}`}</div>
+        <div className='modalBoxM'>Clients Involved: {` ${props.arrayOfBehavioralIncidents[modalClientIndex] ? props.arrayOfBehavioralIncidents[modalClientIndex].clients_involved : 'DELETED'}`}</div>
+        </div>
+        <div className='groupM'>
         <div><button onClick={() => props.makeEditable()}>Edit</button>
         <button onClick={() =>{ 
         props.deleteBehReport(props.modalID)
             
-        }}>Delete</button></div>
+        }}>Delete</button>
+        </div>
+        </div>
 
         {/* clientNameB: 'MUST HAVE VALUE',
             dateB: 0,
